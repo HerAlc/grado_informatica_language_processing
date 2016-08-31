@@ -69,7 +69,7 @@
 <switch_cases>          ::= caso <expr> : <switch_block> <switch_cases>
                          |  caso <expr> : <switch_block>
 
-<switch_block>          ::= <local_var_dec> <sub_progs> <sentences> break ;
+<switch_block>          ::= <local_var_dec> <sub_progs> <sentences> romper ;
 
 <sentence_input>        ::= entrada <identifiers_list>
 
