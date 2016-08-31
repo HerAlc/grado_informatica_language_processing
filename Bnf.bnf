@@ -12,9 +12,9 @@
 
 <sub_prog>              ::= <header_subprogram> <block>
 
-<local_var_dec>         ::= START_VAR_DEC
+<local_var_dec>         ::= iniVar
                             <local_var>
-                            END_VAR_DEC
+                            finVar
                          |
 
 <header_program>        ::= Main
@@ -64,10 +64,10 @@
 
 <sentence_while>        ::= mientras ( <expr> ) <sentence>
 
-<sentence_switch>       ::= switch ( <expr> ) <start_block> <switch_cases> <end_block>
+<sentence_switch>       ::= selecciona ( <expr> ) <start_block> <switch_cases> <end_block>
 
-<switch_cases>          ::= case <expr> : <switch_block> <switch_cases>
-                         |  case <expr> : <switch_block>
+<switch_cases>          ::= caso <expr> : <switch_block> <switch_cases>
+                         |  caso <expr> : <switch_block>
 
 <switch_block>          ::= <local_var_dec> <sub_progs> <sentences> break ;
 
