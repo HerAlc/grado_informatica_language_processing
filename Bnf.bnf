@@ -17,7 +17,7 @@
                             finVar
                          |
 
-<header_program>        ::= Main
+<header_program>        ::= Principal
 
 <start_block>           ::= "{"
 
@@ -35,7 +35,7 @@
                          |  caracter
                          |  booleano
 
-<array_type>            ::= array <primitive_type>
+<array_type>            ::= arreglo <primitive_type>
 
 <identifiers_list>      ::= <identifiers_list>, <identifier>
                          |  <identifier>

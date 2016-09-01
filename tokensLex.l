@@ -19,7 +19,7 @@ other .
 
 %%
 
-"Main" {printf("PRINCIPAL "); return INICIO_PROGRAMA;}
+"Principal" {printf("PRINCIPAL "); return INICIO_PROGRAMA;}
 "iniVar" {printf("INIVAR "); return VARINI;}
 "finVar" {printf("FINVAR "); return VARFIN;}
 "{" {printf("LLAVEINI "); return LEFT_SQUARE_BRACKET;}
@@ -42,6 +42,7 @@ other .
 "entrada" {printf("ENTRADA "); return ENTER;}
 "salida" {printf("SALIDA "); return EXIT;}
 "devolver" {printf("DEVOLVER "); return RETURN;}
+"arreglo" {printf("ARRAY "); return ARRAY;}
 "+"	{printf("MASMENOS (0) "); return PLUSLESS;}
 "-"	{printf("MASMENOS (1) "); return PLUSLESS;}
 "++" {printf("ANIADIR "); return UNARY_OPERATOR;}

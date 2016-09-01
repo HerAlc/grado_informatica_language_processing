@@ -31,3 +31,4 @@
 #define STRING	286
 #define IDENTIFIER	287
 #define BREAK 288
+#define ARRAY 289
