@@ -1,0 +1,60 @@
+booleano MiFuncion( entero nuevoentero ){
+   devolver Falso;
+}
+
+Principal
+{
+   iniVar
+      entero hola1;
+      booleano booleanos[];
+
+      entero mientero = 5;
+      real mireal = 5.98;
+      caracter micaracter = 'A';
+      booleano mibooleano = Verdadero;
+      cadena micadena = "Una cadena";
+      entero arrayEnteros[5], segundoArray[5];
+      real arrayreal[2,2];
+   finVar
+
+   booleanos = [Verdadero , Verdadero , Falso];
+   hola1 = -1;
+   arrayreal = [1.2, 2.2 ; 4.4, 0.5];
+
+   arrayEnteros = arrayEnteros + segundoArray;
+   arrayEnteros - segundoArray;
+   arrayEnteros * segundoArray;
+   arrayEnteros / segundoArray;
+   arrayEnteros ** segundoArray;
+
+   si (mientero>5) 
+      mientero++;
+   sino 
+      mientero--;
+   si (mientero<8){
+      mientero = mientero * mientero;
+      mibooleano = Falso;
+      mientero = mientero/8.6;
+   }
+   mientras (mientero<5){
+      mientero++;
+   }
+   repetir {
+      mientero++;
+   } hasta (mientero > 10);
+
+   entrada mientero;
+   salida mientero;
+
+   mibooleano = MiFuncion(mientero);
+
+   mientero = mientero + mientero - mientero;
+
+   miliestaentero%mientero;
+
+   arrayEnteros ** arrayEnteros xor arrayEnteros y arrayEnteros o arrayEnteros; 
+   arrayEnteros != arrayEnteros == arrayEnteros <= arrayEnteros >= arrayEnteros;
+   arrayEnteros < arrayEnteros > arrayEnteros * arrayEnteros / arrayEnteros;
+   !arrayEnteros;
+}
+

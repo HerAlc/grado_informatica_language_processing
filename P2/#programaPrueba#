@@ -1,0 +1,66 @@
+
+booleano MiFuncion( entero nuevoentero ){
+	devolver Falso;
+}
+
+Principal
+{
+	iniVar
+		en··tero hola1
+		lista booleano booleanos;
+
+		ente··o mientero = 5;
+		real mireal = 5.98;
+		caracter micaracter = 'A';
+		booleano mibooleano = Verdadero;
+		cadena micadena = "Pollñ,o";
+		lista entero milistaentero = [2, 5,4];
+		lista real milistareales = [2.3,4.444,5.444];
+		lista caracter milistacaracter = [',','ñ',',','p'];
+		lista booleano = [Verdadero,Falso,Falso];
+	finVar
+
+	booleanos = [Verdadero , Verdadero , Falso];
+	hola1 = -1;
+
+	milistaentero<<
+	milistaentero>>
+	si (mientero>5) 
+		mientero++;
+	sino 
+		mientero--;
+	si (mientero<8){
+		mientero = mientero * mientero;
+		mibooleano = Falso;
+		mientero = mientero/8.6;
+	}
+	mientras (mientero<5){
+		mientero++;
+	}
+	repetir {
+		mientero++;
+	} hasta (mientero > 10);
+
+	entrada mientero;
+	salida mientero;
+
+	mibooleano = MiFuncion(mientero);
+
+	$milistaentero;
+	#milistaentero;
+	?milistaentero;
+
+	mientero = mientero + mientero - mientero;
+
+	miliestaentero%mientero;
+
+	milistaentero++mientero@mientero;
+
+	milistaentero ** milistaentero xor milistaentero y milistaentero o milistaentero; 
+	milistaentero != milistaentero == milistaentero <= milistaentero >= milistaentero;
+	milistaentero < milistaentero > milistaentero * milistaentero / milistaentero;
+	!milistaentero;
+
+
+}
+
