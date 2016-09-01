@@ -69,8 +69,8 @@ other .
 {string} {printf("CADENA "); return STRING;}
 {identifier}	{printf("IDENTIFICADOR "); return IDENTIFIER;}
 [ \t]+
-\n	++linea_actual ;
-{other}		printf ("\n(Linea %d) Error lexico: token %s\n", linea_actual, yytext);
+\n	++lineaActual ;
+{other}		printf ("\n(Linea %d) Error lexico: token %s\n", lineaActual, yytext);
 %%
 main () 
 {
