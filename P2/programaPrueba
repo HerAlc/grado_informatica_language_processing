@@ -39,9 +39,15 @@ Principal
    mientras (mientero<5){
       mientero++;
    }
-   repetir {
-      mientero++;
-   } hasta (mientero > 10);
+
+   selecciona(variable){
+      caso 1:
+         mientero++;
+	 romper;
+      caso 2:
+	 mientero--;
+	 romper;
+   }
 
    entrada mientero;
    salida mientero;

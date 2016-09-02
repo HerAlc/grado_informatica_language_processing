@@ -70,7 +70,7 @@ other          .
 {identifier}	{printf("IDENTIFICADOR ");        return IDENTIFIER;}
 [ \t]+
 \n	        ++lineaActual ;
-{other}		printf ("\n(Linea %d) Error léxico: token %s\n", lineaActual, yytext);
+{other}		printf ("\n\n(Linea %d) ERROR LÉXICO: TOKEN %s\n\n", lineaActual, yytext);
 
 %%
 

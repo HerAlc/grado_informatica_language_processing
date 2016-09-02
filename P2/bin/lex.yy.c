@@ -1088,7 +1088,7 @@ YY_RULE_SETUP
 case 52:
 YY_RULE_SETUP
 #line 73 "tokensLex.l"
-printf ("\n(Linea %d) Error léxico: token %s\n", lineaActual, yytext);
+printf ("\n\n(Linea %d) ERROR LÉXICO: TOKEN %s\n\n", lineaActual, yytext);
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
