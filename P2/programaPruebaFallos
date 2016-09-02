@@ -2,16 +2,16 @@ booleano MiFuncion( entero nuevoentero ){
    devolver Falso;
 }
 
-Principal
+`Principal
 {
-   iniVar
+   @iniVar
       entero hola1;
       booleano booleanos[];
 
       entero mientero = 5;
       real mireal = 5.98;
       caracter micaracter = 'A';
-      booleano mibooleano = Verdadero;
+      bo\\oleano mibooleano = Verdadero;
       cadena micadena = "Una cadena";
       entero arrayEnteros[5], segundoArray[5];
       real arrayreal[2,2];
@@ -41,10 +41,10 @@ Principal
    }
 
    selecciona(variable){
-      caso 1:
+      casw 1:
          mientero++;
 	 romper;
-      caso 2:
+      caso 2\:
 	 mientero--;
 	 romper;
    }
