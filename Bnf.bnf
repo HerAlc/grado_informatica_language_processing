@@ -5,7 +5,11 @@
                             <local_var_dec>
                             <sub_progs>
                             <sentences>
-                            <end_block>
+                            <end_block> 
+			  | <start_block>
+			    <local_var_dec>
+			    <sub_progs>
+			    <end_block>
 
 <sub_progs>             ::= <sub_progs> <sub_prog>
                          |
@@ -23,9 +27,9 @@
 
 <end_block>             ::= "}"
 
-<local_var>             ::= <local_var> <var_body>
+<local_var>             ::= <local_var> <var_body> | <var_body>
 
-<var_body>              ::= <type> <identifiers_list>
+<var_body>              ::= <type> <array_or_id>
 
 <type>                  ::= <primitive_type>
 
@@ -34,14 +38,12 @@
                          |  caracter
                          |  booleano
 
-<identifiers_list>      ::= <identifiers_list>, <variable>
-                         |  <variable>
+<array_or_id>		::= <identifier> '[' <expr> ',' <expr> ']'
+                             | <identifier> '[' <expr> ']'
+                             | <array_or_id> ',' <identifier>
+                             | <identifier>
 
-<variable>              ::= <identifier>
-                         |  <identifier> '[' <expr> ']'
-                         |  <identifier> '[' <expr> ',' <expr> ']'
-
-<header_subprogram>     ::= <type> <identifier> ( <parameters> )
+<header_subprogram>     ::= <type> <identifier> ( <parameters> ) | <type> <identifier> ()
 
 <parameters>            ::= <parameters> , <type> <identifier>
                          |  <type> <identifier>
@@ -59,7 +61,6 @@
                          |  <sentence_switch>
 
 <sentence_assign>       ::= <identifier> = <expr> ;
-                         |  <array> = <expr> ;
 
 <sentence_if_then_else> ::= si ( <expr> ) <sentence>
                          |  si ( <expr> ) <sentence> sino <sentence>
@@ -73,7 +74,7 @@
 
 <switch_block>          ::= <local_var_dec> <sub_progs> <sentences> romper ;
 
-<sentence_input>        ::= entrada <identifiers_list>
+<sentence_input>        ::= entrada  <cad> ',' <array_or_id> | entrada <array_or_id>
 
 <sentence_output>       ::= salida <list_expr_string> ;
 
@@ -117,9 +118,9 @@
                          |  xor
 
 <function_call>         ::= <identifier> ( <list_expr> )
-                         |  <identifier> ( )
+                         |  <identifier> ()
 
-<list_expr>             ::= <list_expr> COMMA <expr>
+<list_expr>             ::= <list_expr> ',' <expr>
                          |  <expr>;
 
 <const>                 ::= <int_constant>
