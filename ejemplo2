@@ -1,0 +1,88 @@
+entero inicio ()
+{
+	VARINI
+		entero ve, a,b,c;
+		real vf,h, j, k;
+		caracter vc;
+		bool vl;
+		arreglo de entero p[20,20], pe2;
+	VARFIN
+
+	selecciona ( 1 ) {
+		caso 1:
+			VARINI
+				entero a,b;
+			VARFIN
+			a = 1;
+			romper;
+	}
+	
+	entero funcionA(entero a1,real a2)
+	{
+		VARINI
+			entero x1, x2;
+		VARFIN
+
+		caracter funcionB(caracter b1, bool b2)
+		{
+			VARINI
+				real xf, x2;
+			VARFIN
+
+				real funcionC(bool c1, entero c2)
+				{
+					VARINI
+						real x1;
+					VARFIN
+
+					x1 = 1.3;
+					si(c2>10)
+						c2 = c2 - 1;
+					sino
+						x1 = 3.1;
+					devuelve x1;
+				}
+			xf = funcionC(verdadero, 10);
+			x2 = xf * (funcionC(falso, 1) - funcionC(verdadero, 23)) / 10.0;
+
+			mientras(x2*funcionC(falso, 1) - xf < 10.0)
+				x2 = x2 * xf;
+		}
+
+		real funcionD(real d1)
+		{
+			VARINI
+				caracter dato;
+				entero valor;
+			VARFIN
+
+			caracter funcionE(caracter e1, caracter e2)
+			{
+				entrada "enteroroduzca dos caracteres: ", e1, e2;
+				si(e1 == 'a')
+					devuelve e1;
+				sino si(e1 == 'b')
+					devuelve e2;
+				sino
+					devuelve ' ';
+			}
+
+			entrada "enteroroduzca un valor entero: ", valor;
+			si(d1 > 0.0)
+			{
+				VARINI
+					entero dato;
+				VARFIN
+
+				dato = 2;
+				dato = valor * 20 /dato;
+			}
+			sino
+			{
+				valor = valor *100;
+				d1 = d1 / 1000.0;
+			}
+			devuelve d1;
+		}
+	}
+}
