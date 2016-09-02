@@ -39,11 +39,12 @@
                          |  booleano
 
 <array_or_id>		::= <identifier> '[' <expr> ',' <expr> ']'
-                             | <identifier> '[' <expr> ']'
-                             | <array_or_id> ',' <identifier>
-                             | <identifier>
+                         |  <identifier> '[' <expr> ']'
+                         |  <array_or_id> ',' <identifier>
+                         |  <identifier>
 
-<header_subprogram>     ::= <type> <identifier> ( <parameters> ) | <type> <identifier> ()
+<header_subprogram>     ::= <type> <identifier> ( <parameters> )
+                         | <type> <identifier> ()
 
 <parameters>            ::= <parameters> , <type> <identifier>
                          |  <type> <identifier>
@@ -74,7 +75,8 @@
 
 <switch_block>          ::= <local_var_dec> <sub_progs> <sentences> romper ;
 
-<sentence_input>        ::= entrada  <cad> ',' <array_or_id> | entrada <array_or_id>
+<sentence_input>        ::= entrada  <cad> ',' <array_or_id>
+                         |  entrada <array_or_id>
 
 <sentence_output>       ::= salida <list_expr_string> ;
 
@@ -154,14 +156,21 @@
 
 <string>                ::= \"[^\"]+\"
 
-<identifier>            ::= [a-z,A-Z]([a-z,A-Z]|[0-9])*
+<identifier>            ::= [a-z,A-Z]([a-z,A-Z]
+                         |  [0-9])*
 
-<array_constant>        ::= [ <list_int_const> ] | [ <list_int_const> ; <list_int_const> ]
-                         |  [ <list_float_const> ] | [ <list_float_const> ; <list_float_const> ]
-                         |  [ <list_boolean_const> ] | [ <list_boolean_const> ; <list_boolean_const> ]
-                         |  [ <list_char_const> ] | [ <list_char_const> ; <list_char_const> ]
-                         |  [ <list_string_const> ] | [ <list_string_const> ; <list_string_const> ]
-                         |  [ <list_array_const> ] | [ <list_array_const> ; <list_array_const> ]
+<array_constant>        ::= [ <list_int_const> ]
+                         |  [ <list_int_const> ; <list_int_const> ]
+                         |  [ <list_float_const> ]
+                         |  [ <list_float_const> ; <list_float_const> ]
+                         |  [ <list_boolean_const> ]
+                         |  [ <list_boolean_const> ; <list_boolean_const> ]
+                         |  [ <list_char_const> ]
+                         |  [ <list_char_const> ; <list_char_const> ]
+                         |  [ <list_string_const> ]
+                         |  [ <list_string_const> ; <list_string_const> ]
+                         |  [ <list_array_const> ]
+                         |  [ <list_array_const> ; <list_array_const> ]
 
 <list_int_const>        ::= <list_int_const> , <int_constant>
                          |  <int_constant>

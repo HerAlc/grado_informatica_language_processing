@@ -900,7 +900,7 @@ YY_RULE_SETUP
 case 15:
 YY_RULE_SETUP
 #line 36 "tokensLex.l"
-{printf("SELECCIONA ");            return SELECT;}
+{printf("SELECCIONA ");           return SELECT;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
