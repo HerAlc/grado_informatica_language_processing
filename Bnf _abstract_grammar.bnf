@@ -33,10 +33,7 @@
 
 <type>                  ::= <primitive_type>
 
-<primitive_type>        ::= entero
-                         |  real
-                         |  caracter
-                         |  booleano
+<primitive_type>        ::= TYPE
 
 <array_or_id>		::= <identifier> LEFT_SQUARE_BRACKET <expr> COMMA <expr> RIGHT_SQUARE_BRACKET
                          |  <identifier> LEFT_SQUARE_BRACKET <expr> RIGHT_SQUARE_BRACKET
@@ -80,7 +77,7 @@
 
 <sentence_output>       ::= EXIT <list_expr_string> SEMICOLON
 
-<list_expr_string>      ::= <list_expr_string> <expr_cad>
+<list_expr_string>      ::= <list_expr_string> COMMA <expr_cad>
                          |  <expr_cad>
 
 <array>                 ::= <identifier> LEFT_SQUARE_BRACKET <expr> 'COMMA <expr> RIGHT_SQUARE_BRACKET

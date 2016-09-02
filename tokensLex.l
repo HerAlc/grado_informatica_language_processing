@@ -1,7 +1,7 @@
 %{
 #include <stdlib.h>
 #include <string.h>
-#include "tokens.h"
+//#include "tokens.h"
 #define MAXLONBUFFER 200
 char buffer[MAXLONBUFFER];
 int lineaActual = 1;
@@ -50,18 +50,18 @@ other          .
 "Falso"         {printf("VALORBOOL (1) ");        return BOOL;}
 "["             {printf("CORCHINI ");             return LEFT_SQUARE_BRACKET;}
 "]"             {printf("CORCHFIN ");             return RIGHT_SQUARE_BRACKET;}
-"%"             {printf("OPERBORRAR (1) ");       return BINARY_OPERATOR;}
-"xor"           {printf("BINARY_OPERATOR (1) ");  return BINARY_OPERATOR;}
-"y"             {printf("BINARY_OPERATOR (2) ");  return BINARY_OPERATOR;}
-"o"             {printf("BINARY_OPERATOR (3) ");  return BINARY_OPERATOR;}
-"!="            {printf("BINARY_OPERATOR (4) ");  return BINARY_OPERATOR;}
-"=="            {printf("BINARY_OPERATOR (5) ");  return BINARY_OPERATOR;}
-"<="            {printf("BINARY_OPERATOR (6) ");  return BINARY_OPERATOR;}
-">="            {printf("BINARY_OPERATOR (7) ");  return BINARY_OPERATOR;}
-"<"             {printf("BINARY_OPERATOR (8) ");  return BINARY_OPERATOR;}
-">"             {printf("BINARY_OPERATOR (9) ");  return BINARY_OPERATOR;}
-"*"             {printf("BINARY_OPERATOR (10) "); return BINARY_OPERATOR;}
-"/"             {printf("BINARY_OPERATOR (11) "); return BINARY_OPERATOR;}
+"%"             {printf("OPERBORRAR (1) ");       return OP_MUL;}
+"xor"           {printf("BINARY_OPERATOR (1) ");  return OP_XOR;}
+"y"             {printf("BINARY_OPERATOR (2) ");  return OP_AND;}
+"o"             {printf("BINARY_OPERATOR (3) ");  return OP_OR;}
+"!="            {printf("BINARY_OPERATOR (4) ");  return OP_NEQ_EQ;}
+"=="            {printf("BINARY_OPERATOR (5) ");  return OP_NEQ_EQ;}
+"<="            {printf("BINARY_OPERATOR (6) ");  return OP_REL;}
+">="            {printf("BINARY_OPERATOR (7) ");  return OP_REL;}
+"<"             {printf("BINARY_OPERATOR (8) ");  return OP_REL;}
+">"             {printf("BINARY_OPERATOR (9) ");  return OP_REL;}
+"*"             {printf("BINARY_OPERATOR (10) "); return OP_MUL;}
+"/"             {printf("BINARY_OPERATOR (11) "); return OP_MUL;}
 "!"             {printf("OPERADORUNA ");          return UNARY_OPERATOR;}
 {const_integer} {printf("ENTERO ");               return INT;}
 {const_float}   {printf("REAL ");                 return FLOAT;}
@@ -74,14 +74,14 @@ other          .
 
 %%
 
-main () 
-{
-	int val;
-	val= yylex() ;
-	while (val != 0) 
-	{
-		printf ("%s -> Código: %d\n", yytext, val); 
-		val= yylex() ;
-	}
-	exit (1); 
-}
+// main () 
+// {
+// 	int val;
+// 	val= yylex() ;
+// 	while (val != 0) 
+// 	{
+// 		printf ("%s -> Código: %d\n", yytext, val); 
+// 		val= yylex() ;
+// 	}
+// 	exit (1); 
+// }

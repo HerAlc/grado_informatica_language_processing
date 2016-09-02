@@ -80,7 +80,7 @@
 
 <sentence_output>       ::= salida <list_expr_string> ;
 
-<list_expr_string>      ::= <list_expr_string> <expr_cad>
+<list_expr_string>      ::= <list_expr_string>, <expr_cad>
                          |  <expr_cad>
 
 <array>                 ::= <identifier> '[' <expr> ',' <expr> ']'
