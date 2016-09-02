@@ -1,0 +1,24 @@
+entero inicio () {
+
+	VARINI
+		entero a;
+		arreglo de entero a[2,2];
+	VARFIN
+
+	a = 2+2;
+	s = {1,2,3,4,5 ; 5,5,5,5,5};
+
+	selecciona ( 1 ) {
+		caso 1:
+			VARINI
+				entero a,b;
+			VARFIN
+			a = 1;
+			romper;
+	}
+
+	si (2+2 == 4){
+	} sino {
+		a = 3;
+	}
+}
