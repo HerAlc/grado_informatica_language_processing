@@ -33,7 +33,7 @@ other          .
 ")"             {printf("PARENTFIN ");            return RIGHT_BRACKET;}
 "="             {printf("IGUAL ");                return EQUAL;}
 ";"             {printf("PUNTOCOMA ");            return SEMICOLON;}
-"selecciona"    {printf("SELECCIONA ");            return SELECT;}
+"selecciona"    {printf("SELECCIONA ");           return SELECT;}
 "caso"          {printf("CASO" );                 return CASE;}
 "romper"        {printf("ROMPER ");               return BREAK;}
 "si"            {printf("SI ");                   return IF;}

@@ -28,17 +28,18 @@
 <var_body>              ::= <type> <identifiers_list>
 
 <type>                  ::= <primitive_type>
-                         |  <array_type>
 
 <primitive_type>        ::= entero
                          |  real
                          |  caracter
                          |  booleano
 
-<array_type>            ::= arreglo <primitive_type>
+<identifiers_list>      ::= <identifiers_list>, <variable>
+                         |  <variable>
 
-<identifiers_list>      ::= <identifiers_list>, <identifier>
-                         |  <identifier>
+<variable>              ::= <identifier>
+                         |  <identifier> '[' <expr> ']'
+                         |  <identifier> '[' <expr> ',' <expr> ']'
 
 <header_subprogram>     ::= <type> <identifier> ( <parameters> )
 
@@ -58,6 +59,7 @@
                          |  <sentence_switch>
 
 <sentence_assign>       ::= <identifier> = <expr> ;
+                         |  <array> = <expr> ;
 
 <sentence_if_then_else> ::= si ( <expr> ) <sentence>
                          |  si ( <expr> ) <sentence> sino <sentence>
@@ -78,6 +80,9 @@
 <list_expr_string>      ::= <list_expr_string> <expr_cad>
                          |  <expr_cad>
 
+<array>                 ::= <identifier> '[' <expr> ',' <expr> ']'
+                         |  <identifier> '[' <expr> ']'
+
 <expr_cad>              ::= <expr>
                          |  <cad>
 
@@ -86,6 +91,7 @@
 <expr>                  ::= ( <expr> )
                          |  <unary_op> <expr>
                          |  <identifier>
+                         |  <array>
                          |  <const>
                          |  <function_call>
                          |  <expr> <binary_op> <expr>
