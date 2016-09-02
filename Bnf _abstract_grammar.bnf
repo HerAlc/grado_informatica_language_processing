@@ -1,0 +1,175 @@
+<program>               ::= <header_program> <block>
+                         |
+
+<block>                 ::= <start_block>
+                            <local_var_dec>
+                            <sub_progs>
+                            <sentences>
+                            <end_block> 
+			  | <start_block>
+			    <local_var_dec>
+			    <sub_progs>
+			    <end_block>
+
+<sub_progs>             ::= <sub_progs> <sub_prog>
+                         |
+
+<sub_prog>              ::= <header_subprogram> <block>
+
+<local_var_dec>         ::= VARINI
+                            <local_var>
+                            VARFIN
+                         |
+
+<header_program>        ::= INICIO_PROGRAMA
+
+<start_block>           ::= LEFT_CURLY
+
+<end_block>             ::= RIGHT_CURLY
+
+<local_var>             ::= <local_var> <var_body> | <var_body>
+
+<var_body>              ::= <type> <array_or_id>
+
+<type>                  ::= <primitive_type>
+
+<primitive_type>        ::= entero
+                         |  real
+                         |  caracter
+                         |  booleano
+
+<array_or_id>		::= <identifier> LEFT_SQUARE_BRACKET <expr> COMMA <expr> RIGHT_SQUARE_BRACKET
+                         |  <identifier> LEFT_SQUARE_BRACKET <expr> RIGHT_SQUARE_BRACKET
+                         |  <array_or_id> COMMA <identifier>
+                         |  <identifier>
+
+<header_subprogram>     ::= <type> <identifier> LEFT_BRACKET <parameters> RIGHT_BRACKET
+                         | <type> <identifier> LEFT_BRACKET RIGHT_BRACKET
+
+<parameters>            ::= <parameters> COMMA <type> <identifier>
+                         |  <type> <identifier>
+
+<sentences>             ::= <sentences> <sentence>
+                         |  <sentence>
+
+<sentence>              ::= <block>
+                         |  <sentence_assign>
+                         |  <sentence_if_then_else>
+                         |  <sentence_while>
+                         |  <sentence_input>
+                         |  <sentence_output>
+                         |  <sentence_return>
+                         |  <sentence_switch>
+
+<sentence_assign>       ::= <identifier> EQUAL <expr> SEMICOLON
+
+<sentence_if_then_else> ::= IF LEFT_BRACKET <expr> RIGHT_BRACKET <sentence>
+                         |  IF LEFT_BRACKET <expr> RIGHT_BRACKET <sentence> ELSE <sentence>
+
+<sentence_while>        ::= WHILE LEFT_BRACKET <expr> RIGHT_BRACKET <sentence>
+
+<sentence_switch>       ::= SELECT LEFT_BRACKET <expr> RIGHT_BRACKET <start_block> <switch_cases> <end_block>
+
+<switch_cases>          ::= CASE <expr> COLON <switch_block> <switch_cases>
+                         |  CASE <expr> COLON <switch_block>
+
+<switch_block>          ::= <local_var_dec> <sub_progs> <sentences> BREAK SEMICOLON
+
+<sentence_input>        ::= ENTER  <cad> COMMA <array_or_id>
+                         |  ENTER <array_or_id>
+
+<sentence_output>       ::= EXIT <list_expr_string> SEMICOLON
+
+<list_expr_string>      ::= <list_expr_string> <expr_cad>
+                         |  <expr_cad>
+
+<array>                 ::= <identifier> LEFT_SQUARE_BRACKET <expr> 'COMMA <expr> RIGHT_SQUARE_BRACKET
+                         |  <identifier> LEFT_SQUARE_BRACKET <expr> RIGHT_SQUARE_BRACKET
+
+<expr_cad>              ::= <expr>
+                         |  <cad>
+
+<cad>                   ::= \"[^\"]+\"
+
+<expr>                  ::= LEFT_BRACKET <expr> RIGHT_BRACKET
+                         |  <unary_op> <expr>
+                         |  <identifier>
+                         |  <array>
+                         |  <const>
+                         |  <function_call>
+                         |  <expr> <binary_op> <expr>
+                         
+<sentence_return>       ::= RETURN <expr> SEMICOLON
+
+<unary_op>              ::= UNARY_OPERATOR
+
+<binary_op>             ::= BINARY_OPERATOR
+
+<function_call>         ::= <identifier> LEFT_BRACKET <list_expr> RIGHT_BRACKET
+                         |  <identifier> LEFT_BRACKET RIGHT_BRACKET
+
+<list_expr>             ::= <list_expr> COMMA <expr>
+                         |  <expr> SEMICOLON
+
+<const>                 ::= <int_constant>
+                         |  <float_constant>
+                         |  <boolean_constant>
+                         |  <char_constant>
+                         |  <array_constant>
+                         |  <string_constant>
+
+<int_constant>          ::= <numbers>
+
+<numbers>               ::= <numbers> <integer>
+                         |  <integer>
+
+<float_constant>        ::= <float>
+
+<float>                 ::= <numbers>.<numbers>
+
+<boolean_constant>      ::= <boolean>
+
+<boolean>               ::= BOOL
+
+<char_constant>         ::= <char>
+
+<char>                  ::= CHAR
+
+<integer>               ::= INT
+
+<string_constant>       ::= <string>
+
+<string>                ::= STRING
+
+<identifier>            ::= IDENTIFIER
+
+<array_constant>        ::= LEFT_SQUARE_BRACKET <list_int_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_int_const> SEMICOLON <list_int_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_float_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_float_const> SEMICOLON <list_float_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_boolean_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_boolean_const> SEMICOLON <list_boolean_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_char_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_char_const> SEMICOLON <list_char_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_string_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_string_const> SEMICOLON <list_string_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_array_const> RIGHT_SQUARE_BRACKET
+                         |  LEFT_SQUARE_BRACKET <list_array_const> SEMICOLON <list_array_const> RIGHT_SQUARE_BRACKET
+
+<list_int_const>        ::= <list_int_const> COMMA <int_constant>
+                         |  <int_constant>
+
+<list_float_const>      ::= <list_float_const> COMMA <float_constant>
+                         |  <float_constant>
+
+<list_boolean_const>    ::= <list_boolean_const> COMMA <boolean_constant>
+                         |  <boolean_constant>
+
+<list_char_const>       ::= <list_char_const> COMMA <char_constant>
+                         |  <char_constant>
+
+<list_string_const>     ::= <list_string_const> COMMA <string_constant>
+                         |  <string_constant>
+
+<list_array_const>      ::= <list_array_const> COMMA <array_constant>
+                         |  <array_constant>

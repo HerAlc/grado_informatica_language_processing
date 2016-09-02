@@ -142,7 +142,15 @@ typedef unsigned int flex_uint32_t;
 
 /* Size of default input buffer. */
 #ifndef YY_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k.
+ * Moreover, YY_BUF_SIZE is 2*YY_READ_BUF_SIZE in the general case.
+ * Ditto for the __ia64__ case accordingly.
+ */
+#define YY_BUF_SIZE 32768
+#else
 #define YY_BUF_SIZE 16384
+#endif /* __ia64__ */
 #endif
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
@@ -556,7 +564,7 @@ char *yytext;
 #define MAXLONBUFFER 200
 char buffer[MAXLONBUFFER];
 int lineaActual = 1;
-#line 560 "P2/bin/lex.yy.c"
+#line 568 "P2/bin/lex.yy.c"
 
 #define INITIAL 0
 
@@ -637,7 +645,12 @@ static int input (void );
 
 /* Amount of stuff to slurp up with each read. */
 #ifndef YY_READ_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k */
+#define YY_READ_BUF_SIZE 16384
+#else
 #define YY_READ_BUF_SIZE 8192
+#endif /* __ia64__ */
 #endif
 
 /* Copy whatever the last rule matched to the standard output. */
@@ -768,7 +781,7 @@ YY_DECL
 #line 20 "tokensLex.l"
 
 
-#line 772 "P2/bin/lex.yy.c"
+#line 785 "P2/bin/lex.yy.c"
 
 	while ( 1 )		/* loops until end-of-file is reached */
 		{
@@ -1093,7 +1106,7 @@ YY_RULE_SETUP
 #line 75 "tokensLex.l"
 ECHO;
 	YY_BREAK
-#line 1097 "P2/bin/lex.yy.c"
+#line 1110 "P2/bin/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1280,7 +1293,7 @@ static int yy_get_next_buffer (void)
 
 	else
 		{
-			yy_size_t num_to_read =
+			int num_to_read =
 			YY_CURRENT_BUFFER_LVALUE->yy_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
@@ -2088,7 +2101,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 75 "tokensLex.l"
+#line 74 "tokensLex.l"
 
 
 

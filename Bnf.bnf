@@ -99,7 +99,7 @@
                          |  <function_call>
                          |  <expr> <binary_op> <expr>
                          
-<sentence_return>       ::= devolver <expr> ;
+<sentence_return>       ::= devuelve <expr> ;
 
 <unary_op>              ::= !
                          |  +
