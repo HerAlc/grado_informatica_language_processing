@@ -29,6 +29,7 @@ other          .
 "caracter"      {printf("TYPE (2) ");             return TYPE;}
 "booleano"      {printf("TYPE (3) ");             return TYPE;}
 ","             {printf("COMA ");                 return COMMA;}
+":"             {printf("COLON ");                return COLON;}
 "("             {printf("PARENTINI ");            return LEFT_BRACKET;}
 ")"             {printf("PARENTFIN ");            return RIGHT_BRACKET;}
 "="             {printf("IGUAL ");                return EQUAL;}
@@ -42,7 +43,6 @@ other          .
 "entrada"       {printf("ENTRADA ");              return ENTER;}
 "salida"        {printf("SALIDA ");               return EXIT;}
 "devolver"      {printf("DEVOLVER ");             return RETURN;}
-"arreglo"       {printf("ARRAY ");                return ARRAY;}
 "+"             {printf("MASMENOS (0) ");         return PLUSLESS;}
 "-"             {printf("MASMENOS (1) ");         return PLUSLESS;}
 "++"            {printf("ANIADIR ");              return UNARY_OPERATOR;}
