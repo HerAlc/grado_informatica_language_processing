@@ -7,7 +7,7 @@ generated/y.tab.o: generated/y.tab.c
 generated/main.o: main.c
 	gcc -c main.c -o generated/main.o
 generated/y.tab.c: generated/lex.yy.c yacc.y
-	yacc -v yacc.y -o generated/y.tab.c
+	bison -v -d -o generated/y.tab.c yacc.y
 generated/lex.yy.c: tokensLex.l
 	flex -o generated/lex.yy.c -ll tokensLex.l
 clean:
