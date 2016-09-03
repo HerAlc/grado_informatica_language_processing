@@ -53,13 +53,15 @@ Principal
 			caracter funcionE (caracter e1, caracter e2)
 			{
 				entrada "introduzca dos caracteres :", e1, e2;
-				if ( e1 == 'a')
+				si ( e1 == 'a'){
 					devolver e1;
-				sino
-					si (e1 == 'b')
+				}sino{
+					si (e1 == 'b'){
 						devolver e2;
-					sino
+					}sino{
 						devolver ' ';
+					}
+				}
 			}
 			
 			entrada "introduzca un valor entero: ", valor;

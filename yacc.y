@@ -195,8 +195,8 @@ switch_block:
 ;
 
 sentence_input:
-  ENTER STRING COMMA array_or_id
-| ENTER array_or_id
+  ENTER STRING COMMA array_or_id SEMICOLON
+| ENTER array_or_id SEMICOLON
 ;
 
 sentence_output:
