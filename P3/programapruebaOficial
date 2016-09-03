@@ -10,12 +10,16 @@ Principal
                 real arrayreal[2,2];
         finVar
 
+
+
+
 	entero funcionA ( entero a1, real a2, caracter a3)
 	{
 		iniVar
 			entero x1, x2;
 		finVar
 
+		
 		caracter funcionB ( caracter b1, booleano b2)
 		{
 			iniVar
@@ -62,6 +66,21 @@ Principal
 						devolver ' ';
 					}
 				}
+
+			selecciona ( 1 ) {
+		caso 1:
+			iniVar
+				entero a,b;
+			finVar
+			a = 1;
+			romper;
+	
+		}
+
+	si (2+2 == 4){
+	} sino {
+		a = 3;
+	}
 			}
 			
 			entrada "introduzca un valor entero: ", valor;
