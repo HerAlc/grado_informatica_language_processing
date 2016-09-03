@@ -80,150 +80,229 @@ int linea_actual = 1 ;
 
 %%
 /* Sección de producciones que definen la gramática. */
-Principal             : header_program block;
+Principal:
+  header_program block
+;
 
-block                 : start_block local_var_dec sub_progs sentences end_block
-                         | start_block local_var_dec sub_progs end_block;
+block:
+  start_block local_var_dec sub_progs sentences end_block
+| start_block local_var_dec sub_progs end_block
+;
 
-sub_progs             : sub_progs sub_prog
-                         | ;
+sub_progs:
+  sub_progs sub_prog
+|
+;
 
-sub_prog              : header_subprogram block;
+sub_prog:
+  header_subprogram block
+;
 
-local_var_dec         : VARINI local_var VARFIN
-                         | ;
+local_var_dec:
+  VARINI local_var VARFIN
+|
+;
 
-header_program        : INICIO_PROGRAMA
-                         | error;
+header_program:
+  INICIO_PROGRAMA
+| error
+;
 
-start_block           : LEFT_CURLY ;
+start_block:
+  LEFT_CURLY
+;
 
-end_block             : RIGHT_CURLY ;
+end_block:
+  RIGHT_CURLY
+;
 
-local_var             : local_var var_body
-                         | var_body;
+local_var:
+  local_var var_body
+| var_body
+;
 
-var_body              : type array_or_id SEMICOLON
-                         | type array_or_id error
-                         | error;
+var_body:
+  type array_or_id SEMICOLON
+| type array_or_id error
+| error
+;
 
-type                  : primitive_type
-                         | error;
+type:
+  primitive_type
+| error
+;
 
-primitive_type        : TYPE;
+primitive_type:
+  TYPE
+;
 
-array_or_id	      : IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
-                         |  IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
-                         |  array_or_id COMMA IDENTIFIER
-                         |  IDENTIFIER;
+array_or_id	:
+  IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
+| IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
+| array_or_id COMMA IDENTIFIER
+| IDENTIFIER
+;
 
-header_subprogram     : type IDENTIFIER LEFT_BRACKET parameters RIGHT_BRACKET
-                         | type IDENTIFIER LEFT_BRACKET RIGHT_BRACKET;
+header_subprogram:
+  type IDENTIFIER LEFT_BRACKET parameters RIGHT_BRACKET
+| type IDENTIFIER LEFT_BRACKET RIGHT_BRACKET
+;
 
-parameters            : parameters COMMA type IDENTIFIER
-                         |  type IDENTIFIER;
+parameters:
+  parameters COMMA type IDENTIFIER
+| type IDENTIFIER
+;
 
-sentences             : sentences sentence
-                         |  sentence;
+sentences:
+  sentences sentence
+| sentence
+;
 
-sentence              : block
-                         |  sentence_assign
-                         |  sentence_if_then_else
-                         |  sentence_while
-                         |  sentence_input
-                         |  sentence_output
-                         |  sentence_return
-                         |  sentence_switch;
+sentence:
+  block
+| sentence_assign
+| sentence_if_then_else
+| sentence_while
+| sentence_input
+| sentence_output
+| sentence_return
+| sentence_switch
+;
 
-sentence_assign       : IDENTIFIER EQUAL expr SEMICOLON;
+sentence_assign:
+  IDENTIFIER EQUAL expr SEMICOLON
+;
 
-sentence_if_then_else : IF LEFT_BRACKET expr RIGHT_BRACKET sentence
-                         |  IF LEFT_BRACKET expr RIGHT_BRACKET sentence ELSE sentence;
+sentence_if_then_else:
+  IF LEFT_BRACKET expr RIGHT_BRACKET sentence
+| IF LEFT_BRACKET expr RIGHT_BRACKET sentence ELSE sentence
+;
 
-sentence_while        : WHILE LEFT_BRACKET expr RIGHT_BRACKET sentence;
+sentence_while:
+  WHILE LEFT_BRACKET expr RIGHT_BRACKET sentence
+;
 
-sentence_switch       : SELECT LEFT_BRACKET expr RIGHT_BRACKET start_block switch_cases end_block;
+sentence_switch:
+  SELECT LEFT_BRACKET expr RIGHT_BRACKET start_block switch_cases end_block
+;
 
-switch_cases          : CASE expr COLON switch_block switch_cases
-                         |  CASE expr COLON switch_block;
+switch_cases:
+  CASE expr COLON switch_block switch_cases
+| CASE expr COLON switch_block
+;
 
-switch_block          : local_var_dec sub_progs sentences BREAK SEMICOLON;
+switch_block:
+  local_var_dec sub_progs sentences BREAK SEMICOLON
+;
 
-sentence_input        : ENTER STRING COMMA array_or_id
-                         |  ENTER array_or_id;
+sentence_input:
+  ENTER STRING COMMA array_or_id
+| ENTER array_or_id
+;
 
-sentence_output       : EXIT list_expr_string SEMICOLON;
+sentence_output:
+  EXIT list_expr_string SEMICOLON
+;
 
-list_expr_string      : list_expr_string COMMA expr_cad
-                         |  expr_cad;
+list_expr_string:
+  list_expr_string COMMA expr_cad
+| expr_cad
+;
 
-array                 : IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
-                         |  IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET;
+array:
+  IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
+| IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
+;
 
-expr_cad              : expr
-                        STRING;
+expr_cad:
+  expr
+| STRING
+;
 
-expr                  : LEFT_BRACKET expr RIGHT_BRACKET
-                         | OP_PLUSLESS expr %prec UNARY_OPERATOR
-                         | UNARY_OPERATOR expr
-                         | expr OP_PLUSLESS expr
-                         | expr OP_MUL expr
-                         | expr OP_REL expr
-                         | expr OP_NEQ_EQ expr
-                         | expr OP_OR expr
-                         | expr OP_AND expr
-                         | expr OP_XOR expr
-                         | IDENTIFIER
-                         | array
-                         | const
-                         | function_call
-                         | error;
+expr:
+  LEFT_BRACKET expr RIGHT_BRACKET
+| OP_PLUSLESS expr %prec UNARY_OPERATOR
+| UNARY_OPERATOR expr
+| expr OP_PLUSLESS expr
+| expr OP_MUL expr
+| expr OP_REL expr
+| expr OP_NEQ_EQ expr
+| expr OP_OR expr
+| expr OP_AND expr
+| expr OP_XOR expr
+| IDENTIFIER
+| array
+| const
+| function_call
+| error
+;
                          
-sentence_return       : RETURN expr SEMICOLON;
+sentence_return:
+  RETURN expr SEMICOLON
+;
 
-function_call         : IDENTIFIER LEFT_BRACKET list_expr RIGHT_BRACKET
-                         |  IDENTIFIER LEFT_BRACKET RIGHT_BRACKET;
+function_call:
+  IDENTIFIER LEFT_BRACKET list_expr RIGHT_BRACKET
+| IDENTIFIER LEFT_BRACKET RIGHT_BRACKET
+;
 
-list_expr             : list_expr COMMA expr
-                         |  expr;
+list_expr:
+  list_expr COMMA expr
+| expr
+;
 
-const                 : INT
-                         | FLOAT
-                         |  BOOL
-                         |  CHAR
-|  array_constant;
-/*  |  STRING; REMOVED FROM HERE TO AVOID CONFLICTS IN expr_cad*/
+const:
+  INT
+| FLOAT
+| BOOL
+| CHAR
+| array_constant
+;
 
-array_constant        : LEFT_SQUARE_BRACKET list_int_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_float_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_float_const SEMICOLON list_float_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_boolean_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_char_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_char_const SEMICOLON list_char_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_string_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_string_const SEMICOLON list_string_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_array_const RIGHT_SQUARE_BRACKET
-                         |  LEFT_SQUARE_BRACKET list_array_const SEMICOLON list_array_const RIGHT_SQUARE_BRACKET;
+array_constant:
+  LEFT_SQUARE_BRACKET list_int_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_float_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_float_const SEMICOLON list_float_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_boolean_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_char_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_char_const SEMICOLON list_char_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_string_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_string_const SEMICOLON list_string_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_array_const RIGHT_SQUARE_BRACKET
+| LEFT_SQUARE_BRACKET list_array_const SEMICOLON list_array_const RIGHT_SQUARE_BRACKET
+;
 
-list_int_const        : list_int_const COMMA INT
-                         |  INT;
+list_int_const:
+  list_int_const COMMA INT
+| INT
+;
 
-list_float_const      : list_float_const COMMA FLOAT
-                         |  FLOAT;
+list_float_const:
+  list_float_const COMMA FLOAT
+| FLOAT
+;
 
-list_boolean_const    : list_boolean_const COMMA BOOL
-                         |  BOOL;
+list_boolean_const:
+  list_boolean_const COMMA BOOL
+| BOOL
+;
 
-list_char_const       : list_char_const COMMA CHAR
-                         |  CHAR;
+list_char_const:
+  list_char_const COMMA CHAR
+| CHAR
+;
 
-list_string_const     : list_string_const COMMA STRING
-                         |  STRING;
+list_string_const:
+  list_string_const COMMA STRING
+| STRING
+;
 
-list_array_const      : list_array_const COMMA array_constant
-                         |  array_constant;
+list_array_const:
+  list_array_const COMMA array_constant
+| array_constant
+;
 
 %%
 

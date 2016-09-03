@@ -1,17 +1,17 @@
 .SUFFIXES:
 
-generated/prueba: generated/main.o generated/y.tab.o
-	gcc -o generated/prueba generated/main.o generated/y.tab.o
-generated/y.tab.o: generated/y.tab.c
-	gcc -c generated/y.tab.c -o generated/y.tab.o
-generated/main.o: main.c
-	gcc -c main.c -o generated/main.o
-generated/y.tab.c: generated/lex.yy.c yacc.y
-	bison -v -d -o generated/y.tab.c yacc.y
-generated/lex.yy.c: tokensLex.l
-	flex -o generated/lex.yy.c -ll tokensLex.l
+bin/prueba: bin/main.o bin/y.tab.o
+	gcc -o bin/prueba bin/main.o bin/y.tab.o
+bin/y.tab.o: bin/y.tab.c
+	gcc -c bin/y.tab.c -o bin/y.tab.o
+bin/main.o: main.c
+	gcc -c main.c -o bin/main.o
+bin/y.tab.c: bin/lex.yy.c yacc.y
+	bison -v -d -o bin/y.tab.c yacc.y
+bin/lex.yy.c: tokensLex.l
+	flex -o bin/lex.yy.c -ll tokensLex.l
 clean:
-	rm -f -R generated/* *~
+	rm -f -R bin/* *~
 all:
 	make clean
-	make generated/prueba
+	make bin/prueba
