@@ -127,6 +127,7 @@ var_body:
 
 type:
   primitive_type
+| error
 ;
 
 primitive_type:
@@ -136,8 +137,8 @@ primitive_type:
 array_or_id:
   IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
 | IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
-| array_or_id COMMA IDENTIFIER
-| IDENTIFIER
+| array_or_id COMMA IDENTIFIER 
+| IDENTIFIER 
 | error
 ;
 
