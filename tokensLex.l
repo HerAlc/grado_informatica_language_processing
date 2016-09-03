@@ -43,8 +43,8 @@ other          .
 "entrada"       {printf("ENTRADA \n");              return ENTER;}
 "salida"        {printf("SALIDA \n");               return EXIT;}
 "devolver"      {printf("DEVOLVER \n");             return RETURN;}
-"+"             {printf("MASMENOS (0) \n");         return PLUSLESS;}
-"-"             {printf("MASMENOS (1) \n");         return PLUSLESS;}
+"+"             {printf("MASMENOS (0) \n");         return OP_PLUSLESS;}
+"-"             {printf("MASMENOS (1) \n");         return OP_PLUSLESS;}
 "++"            {printf("ANIADIR \n");              return UNARY_OPERATOR;}
 "Verdadero"     {printf("VALORBOOL (0) \n");        return BOOL;}
 "Falso"         {printf("VALORBOOL (1) \n");        return BOOL;}

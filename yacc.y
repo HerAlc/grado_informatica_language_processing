@@ -31,7 +31,6 @@ int linea_actual = 1 ;
 %token ENTER
 %token EXIT
 %token RETURN
-%token PLUSLESS
 %token BOOL
 %token LEFT_SQUARE_BRACKET
 %token RIGHT_SQUARE_BRACKET
