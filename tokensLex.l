@@ -4,7 +4,6 @@
 //#include "tokens.h"
 #define MAXLONBUFFER 200
 char buffer[MAXLONBUFFER];
-int lineaActual = 1;
 %}
 
 const_integer  [0-9]+
@@ -43,8 +42,8 @@ other          .
 "entrada"       {printf("ENTRADA \n");              return ENTER;}
 "salida"        {printf("SALIDA \n");               return EXIT;}
 "devolver"      {printf("DEVOLVER \n");             return RETURN;}
-"+"             {printf("MASMENOS (0) \n");         return PLUSLESS;}
-"-"             {printf("MASMENOS (1) \n");         return PLUSLESS;}
+"+"             {printf("MASMENOS (0) \n");         return OP_PLUSLESS;}
+"-"             {printf("MASMENOS (1) \n");         return OP_PLUSLESS;}
 "++"            {printf("ANIADIR \n");              return UNARY_OPERATOR;}
 "Verdadero"     {printf("VALORBOOL (0) \n");        return BOOL;}
 "Falso"         {printf("VALORBOOL (1) \n");        return BOOL;}
@@ -69,8 +68,8 @@ other          .
 {string}        {printf("CADENA \n");               return STRING;}
 {identifier}	{printf("IDENTIFICADOR \n");        return IDENTIFIER;}
 [ \t]+
-\n	        ++lineaActual ;
-{other}		printf ("\n\n(Linea %d) ERROR LÉXICO: TOKEN %s\n\n", lineaActual, yytext);
+\n	        ++linea_actual ;
+{other}		printf ("\n\n(Linea %d) ERROR LÉXICO: TOKEN %s\n\n", linea_actual, yytext);
 
 %%
 

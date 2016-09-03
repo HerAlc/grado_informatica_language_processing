@@ -31,7 +31,6 @@ int linea_actual = 1 ;
 %token ENTER
 %token EXIT
 %token RETURN
-%token PLUSLESS
 %token BOOL
 %token LEFT_SQUARE_BRACKET
 %token RIGHT_SQUARE_BRACKET
@@ -123,7 +122,6 @@ local_var:
 
 var_body:
   type array_or_id SEMICOLON
-| type array_or_id error
 | error
 ;
 
@@ -139,8 +137,9 @@ primitive_type:
 array_or_id:
   IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
 | IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
-| array_or_id COMMA IDENTIFIER
-| IDENTIFIER
+| array_or_id COMMA IDENTIFIER 
+| IDENTIFIER 
+| error
 ;
 
 header_subprogram:
@@ -196,8 +195,8 @@ switch_block:
 ;
 
 sentence_input:
-  ENTER STRING COMMA array_or_id
-| ENTER array_or_id
+  ENTER STRING COMMA array_or_id SEMICOLON
+| ENTER array_or_id SEMICOLON
 ;
 
 sentence_output:
