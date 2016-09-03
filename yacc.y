@@ -160,8 +160,8 @@ list_expr_string      : list_expr_string COMMA expr_cad
 array                 : IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
                          |  IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET;
 
-expr_cad              : expr;
-                        /* removed STRING, already contained in expr |  STRING;*/
+expr_cad              : expr
+                        STRING;
 
 expr                  : LEFT_BRACKET expr RIGHT_BRACKET
                          | OP_PLUSLESS expr %prec UNARY_OPERATOR
@@ -191,8 +191,8 @@ const                 : INT
                          | FLOAT
                          |  BOOL
                          |  CHAR
-                         |  array_constant
-                         |  STRING;
+|  array_constant;
+/*  |  STRING; REMOVED FROM HERE TO AVOID CONFLICTS IN expr_cad*/
 
 array_constant        : LEFT_SQUARE_BRACKET list_int_const RIGHT_SQUARE_BRACKET
                          |  LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET

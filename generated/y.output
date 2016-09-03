@@ -97,7 +97,7 @@ Grammar
    52 array: IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
    53      | IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
 
-   54 expr_cad: expr
+   54 expr_cad: expr STRING
 
    55 expr: LEFT_BRACKET expr RIGHT_BRACKET
    56     | OP_PLUSLESS expr
@@ -128,38 +128,37 @@ Grammar
    77      | BOOL
    78      | CHAR
    79      | array_constant
-   80      | STRING
 
-   81 array_constant: LEFT_SQUARE_BRACKET list_int_const RIGHT_SQUARE_BRACKET
-   82               | LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET
-   83               | LEFT_SQUARE_BRACKET list_float_const RIGHT_SQUARE_BRACKET
-   84               | LEFT_SQUARE_BRACKET list_float_const SEMICOLON list_float_const RIGHT_SQUARE_BRACKET
-   85               | LEFT_SQUARE_BRACKET list_boolean_const RIGHT_SQUARE_BRACKET
-   86               | LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET
-   87               | LEFT_SQUARE_BRACKET list_char_const RIGHT_SQUARE_BRACKET
-   88               | LEFT_SQUARE_BRACKET list_char_const SEMICOLON list_char_const RIGHT_SQUARE_BRACKET
-   89               | LEFT_SQUARE_BRACKET list_string_const RIGHT_SQUARE_BRACKET
-   90               | LEFT_SQUARE_BRACKET list_string_const SEMICOLON list_string_const RIGHT_SQUARE_BRACKET
-   91               | LEFT_SQUARE_BRACKET list_array_const RIGHT_SQUARE_BRACKET
-   92               | LEFT_SQUARE_BRACKET list_array_const SEMICOLON list_array_const RIGHT_SQUARE_BRACKET
+   80 array_constant: LEFT_SQUARE_BRACKET list_int_const RIGHT_SQUARE_BRACKET
+   81               | LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET
+   82               | LEFT_SQUARE_BRACKET list_float_const RIGHT_SQUARE_BRACKET
+   83               | LEFT_SQUARE_BRACKET list_float_const SEMICOLON list_float_const RIGHT_SQUARE_BRACKET
+   84               | LEFT_SQUARE_BRACKET list_boolean_const RIGHT_SQUARE_BRACKET
+   85               | LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET
+   86               | LEFT_SQUARE_BRACKET list_char_const RIGHT_SQUARE_BRACKET
+   87               | LEFT_SQUARE_BRACKET list_char_const SEMICOLON list_char_const RIGHT_SQUARE_BRACKET
+   88               | LEFT_SQUARE_BRACKET list_string_const RIGHT_SQUARE_BRACKET
+   89               | LEFT_SQUARE_BRACKET list_string_const SEMICOLON list_string_const RIGHT_SQUARE_BRACKET
+   90               | LEFT_SQUARE_BRACKET list_array_const RIGHT_SQUARE_BRACKET
+   91               | LEFT_SQUARE_BRACKET list_array_const SEMICOLON list_array_const RIGHT_SQUARE_BRACKET
 
-   93 list_int_const: list_int_const COMMA INT
-   94               | INT
+   92 list_int_const: list_int_const COMMA INT
+   93               | INT
 
-   95 list_float_const: list_float_const COMMA FLOAT
-   96                 | FLOAT
+   94 list_float_const: list_float_const COMMA FLOAT
+   95                 | FLOAT
 
-   97 list_boolean_const: list_boolean_const COMMA BOOL
-   98                   | BOOL
+   96 list_boolean_const: list_boolean_const COMMA BOOL
+   97                   | BOOL
 
-   99 list_char_const: list_char_const COMMA CHAR
-  100                | CHAR
+   98 list_char_const: list_char_const COMMA CHAR
+   99                | CHAR
 
-  101 list_string_const: list_string_const COMMA STRING
-  102                  | STRING
+  100 list_string_const: list_string_const COMMA STRING
+  101                  | STRING
 
-  103 list_array_const: list_array_const COMMA array_constant
-  104                 | array_constant
+  102 list_array_const: list_array_const COMMA array_constant
+  103                 | array_constant
 
 
 Terminals, with rules where they appear
@@ -172,11 +171,11 @@ VARFIN (260) 7
 LEFT_CURLY (261) 11
 RIGHT_CURLY (262) 12
 TYPE (263) 20
-COMMA (264) 21 23 27 47 50 52 73 93 95 97 99 101 103
+COMMA (264) 21 23 27 47 50 52 73 92 94 96 98 100 102
 LEFT_BRACKET (265) 25 26 40 41 42 43 55 71 72
 RIGHT_BRACKET (266) 25 26 40 41 42 43 55 71 72
 EQUAL (267) 39
-SEMICOLON (268) 15 39 46 49 70 82 84 86 88 90 92
+SEMICOLON (268) 15 39 46 49 70 81 83 85 87 89 91
 IF (269) 40 41
 ELSE (270) 41
 WHILE (271) 42
@@ -186,11 +185,11 @@ ENTER (274) 47 48
 EXIT (275) 49
 RETURN (276) 70
 PLUSLESS (277)
-BOOL (278) 77 97 98
-LEFT_SQUARE_BRACKET (279) 21 22 52 53 81 82 83 84 85 86 87 88 89 90
-    91 92
-RIGHT_SQUARE_BRACKET (280) 21 22 52 53 81 82 83 84 85 86 87 88 89 90
-    91 92
+BOOL (278) 77 96 97
+LEFT_SQUARE_BRACKET (279) 21 22 52 53 80 81 82 83 84 85 86 87 88 89
+    90 91
+RIGHT_SQUARE_BRACKET (280) 21 22 52 53 80 81 82 83 84 85 86 87 88 89
+    90 91
 DOUBLE_QUOTE (281)
 SINGLE_QUOTE (282)
 OP_OR (283) 62
@@ -206,10 +205,10 @@ OP_DEC_POS (292)
 OP_INC_POS (293)
 OP_INDEX (294)
 UNARY_OPERATOR (295) 57
-INT (296) 75 93 94
-FLOAT (297) 76 95 96
-CHAR (298) 78 99 100
-STRING (299) 47 80 101 102
+INT (296) 75 92 93
+FLOAT (297) 76 94 95
+CHAR (298) 78 98 99
+STRING (299) 47 54 100 101
 IDENTIFIER (300) 21 22 23 24 25 26 27 28 39 52 53 65 71 72
 BREAK (301) 46
 COLON (302) 44 45
@@ -286,22 +285,22 @@ function_call (79)
 list_expr (80)
     on left: 73 74, on right: 71 73
 const (81)
-    on left: 75 76 77 78 79 80, on right: 67
+    on left: 75 76 77 78 79, on right: 67
 array_constant (82)
-    on left: 81 82 83 84 85 86 87 88 89 90 91 92, on right: 79 103
-    104
+    on left: 80 81 82 83 84 85 86 87 88 89 90 91, on right: 79 102
+    103
 list_int_const (83)
-    on left: 93 94, on right: 81 82 93
+    on left: 92 93, on right: 80 81 92
 list_float_const (84)
-    on left: 95 96, on right: 83 84 95
+    on left: 94 95, on right: 82 83 94
 list_boolean_const (85)
-    on left: 97 98, on right: 85 86 97
+    on left: 96 97, on right: 84 85 96
 list_char_const (86)
-    on left: 99 100, on right: 87 88 99
+    on left: 98 99, on right: 86 87 98
 list_string_const (87)
-    on left: 101 102, on right: 89 90 101
+    on left: 100 101, on right: 88 89 100
 list_array_const (88)
-    on left: 103 104, on right: 91 92 103
+    on left: 102 103, on right: 90 91 102
 
 
 State 0
@@ -588,16 +587,15 @@ State 28
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    list_expr_string  go to state 65
-    array             go to state 66
-    expr_cad          go to state 67
-    expr              go to state 68
-    function_call     go to state 69
-    const             go to state 70
-    array_constant    go to state 71
+    list_expr_string  go to state 64
+    array             go to state 65
+    expr_cad          go to state 66
+    expr              go to state 67
+    function_call     go to state 68
+    const             go to state 69
+    array_constant    go to state 70
 
 
 State 29
@@ -613,21 +611,20 @@ State 29
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
-    expr            go to state 72
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    array           go to state 65
+    expr            go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 30
 
    39 sentence_assign: IDENTIFIER . EQUAL expr SEMICOLON
 
-    EQUAL  shift, and go to state 73
+    EQUAL  shift, and go to state 72
 
 
 State 31
@@ -656,7 +653,7 @@ State 34
    25 header_subprogram: type . IDENTIFIER LEFT_BRACKET parameters RIGHT_BRACKET
    26                  | type . IDENTIFIER LEFT_BRACKET RIGHT_BRACKET
 
-    IDENTIFIER  shift, and go to state 74
+    IDENTIFIER  shift, and go to state 73
 
 
 State 35
@@ -665,7 +662,7 @@ State 35
 
     LEFT_CURLY  shift, and go to state 6
 
-    block        go to state 75
+    block        go to state 74
     start_block  go to state 8
 
 
@@ -686,8 +683,8 @@ State 36
 
     block                  go to state 31
     start_block            go to state 8
-    end_block              go to state 76
-    sentence               go to state 77
+    end_block              go to state 75
+    sentence               go to state 76
     sentence_assign        go to state 38
     sentence_if_then_else  go to state 39
     sentence_while         go to state 40
@@ -767,14 +764,13 @@ State 45
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
-    expr            go to state 78
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    array           go to state 65
+    expr            go to state 77
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 46
@@ -788,7 +784,7 @@ State 47
 
    23 array_or_id: array_or_id COMMA . IDENTIFIER
 
-    IDENTIFIER  shift, and go to state 79
+    IDENTIFIER  shift, and go to state 78
 
 
 State 48
@@ -812,14 +808,13 @@ State 49
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
-    expr            go to state 80
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    array           go to state 65
+    expr            go to state 79
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 50
@@ -835,14 +830,13 @@ State 50
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
-    expr            go to state 81
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    array           go to state 65
+    expr            go to state 80
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 51
@@ -858,21 +852,20 @@ State 51
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
-    expr            go to state 82
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    array           go to state 65
+    expr            go to state 81
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 52
 
    47 sentence_input: ENTER STRING . COMMA array_or_id
 
-    COMMA  shift, and go to state 83
+    COMMA  shift, and go to state 82
 
 
 State 53
@@ -905,14 +898,13 @@ State 55
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
-    expr            go to state 84
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    array           go to state 65
+    expr            go to state 83
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 56
@@ -924,33 +916,33 @@ State 56
 
 State 57
 
-   81 array_constant: LEFT_SQUARE_BRACKET . list_int_const RIGHT_SQUARE_BRACKET
-   82               | LEFT_SQUARE_BRACKET . list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET
-   83               | LEFT_SQUARE_BRACKET . list_float_const RIGHT_SQUARE_BRACKET
-   84               | LEFT_SQUARE_BRACKET . list_float_const SEMICOLON list_float_const RIGHT_SQUARE_BRACKET
-   85               | LEFT_SQUARE_BRACKET . list_boolean_const RIGHT_SQUARE_BRACKET
-   86               | LEFT_SQUARE_BRACKET . list_boolean_const SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET
-   87               | LEFT_SQUARE_BRACKET . list_char_const RIGHT_SQUARE_BRACKET
-   88               | LEFT_SQUARE_BRACKET . list_char_const SEMICOLON list_char_const RIGHT_SQUARE_BRACKET
-   89               | LEFT_SQUARE_BRACKET . list_string_const RIGHT_SQUARE_BRACKET
-   90               | LEFT_SQUARE_BRACKET . list_string_const SEMICOLON list_string_const RIGHT_SQUARE_BRACKET
-   91               | LEFT_SQUARE_BRACKET . list_array_const RIGHT_SQUARE_BRACKET
-   92               | LEFT_SQUARE_BRACKET . list_array_const SEMICOLON list_array_const RIGHT_SQUARE_BRACKET
+   80 array_constant: LEFT_SQUARE_BRACKET . list_int_const RIGHT_SQUARE_BRACKET
+   81               | LEFT_SQUARE_BRACKET . list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET
+   82               | LEFT_SQUARE_BRACKET . list_float_const RIGHT_SQUARE_BRACKET
+   83               | LEFT_SQUARE_BRACKET . list_float_const SEMICOLON list_float_const RIGHT_SQUARE_BRACKET
+   84               | LEFT_SQUARE_BRACKET . list_boolean_const RIGHT_SQUARE_BRACKET
+   85               | LEFT_SQUARE_BRACKET . list_boolean_const SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET
+   86               | LEFT_SQUARE_BRACKET . list_char_const RIGHT_SQUARE_BRACKET
+   87               | LEFT_SQUARE_BRACKET . list_char_const SEMICOLON list_char_const RIGHT_SQUARE_BRACKET
+   88               | LEFT_SQUARE_BRACKET . list_string_const RIGHT_SQUARE_BRACKET
+   89               | LEFT_SQUARE_BRACKET . list_string_const SEMICOLON list_string_const RIGHT_SQUARE_BRACKET
+   90               | LEFT_SQUARE_BRACKET . list_array_const RIGHT_SQUARE_BRACKET
+   91               | LEFT_SQUARE_BRACKET . list_array_const SEMICOLON list_array_const RIGHT_SQUARE_BRACKET
 
-    BOOL                 shift, and go to state 85
+    BOOL                 shift, and go to state 84
     LEFT_SQUARE_BRACKET  shift, and go to state 57
-    INT                  shift, and go to state 86
-    FLOAT                shift, and go to state 87
-    CHAR                 shift, and go to state 88
-    STRING               shift, and go to state 89
+    INT                  shift, and go to state 85
+    FLOAT                shift, and go to state 86
+    CHAR                 shift, and go to state 87
+    STRING               shift, and go to state 88
 
-    array_constant      go to state 90
-    list_int_const      go to state 91
-    list_float_const    go to state 92
-    list_boolean_const  go to state 93
-    list_char_const     go to state 94
-    list_string_const   go to state 95
-    list_array_const    go to state 96
+    array_constant      go to state 89
+    list_int_const      go to state 90
+    list_float_const    go to state 91
+    list_boolean_const  go to state 92
+    list_char_const     go to state 93
+    list_string_const   go to state 94
+    list_array_const    go to state 95
 
 
 State 58
@@ -966,14 +958,13 @@ State 58
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
-    expr            go to state 97
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    array           go to state 65
+    expr            go to state 96
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 59
@@ -989,14 +980,13 @@ State 59
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
-    expr            go to state 98
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    array           go to state 65
+    expr            go to state 97
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 60
@@ -1022,51 +1012,44 @@ State 62
 
 State 63
 
-   80 const: STRING .
-
-    $default  reduce using rule 80 (const)
-
-
-State 64
-
    52 array: IDENTIFIER . LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
    53      | IDENTIFIER . LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
    65 expr: IDENTIFIER .
    71 function_call: IDENTIFIER . LEFT_BRACKET list_expr RIGHT_BRACKET
    72              | IDENTIFIER . LEFT_BRACKET RIGHT_BRACKET
 
-    LEFT_BRACKET         shift, and go to state 99
-    LEFT_SQUARE_BRACKET  shift, and go to state 100
+    LEFT_BRACKET         shift, and go to state 98
+    LEFT_SQUARE_BRACKET  shift, and go to state 99
 
     $default  reduce using rule 65 (expr)
 
 
-State 65
+State 64
 
    49 sentence_output: EXIT list_expr_string . SEMICOLON
    50 list_expr_string: list_expr_string . COMMA expr_cad
 
-    COMMA      shift, and go to state 101
-    SEMICOLON  shift, and go to state 102
+    COMMA      shift, and go to state 100
+    SEMICOLON  shift, and go to state 101
 
 
-State 66
+State 65
 
    66 expr: array .
 
     $default  reduce using rule 66 (expr)
 
 
-State 67
+State 66
 
    51 list_expr_string: expr_cad .
 
     $default  reduce using rule 51 (list_expr_string)
 
 
-State 68
+State 67
 
-   54 expr_cad: expr .
+   54 expr_cad: expr . STRING
    58 expr: expr . OP_PLUSLESS expr
    59     | expr . OP_MUL expr
    60     | expr . OP_REL expr
@@ -1075,39 +1058,38 @@ State 68
    63     | expr . OP_AND expr
    64     | expr . OP_XOR expr
 
-    OP_OR        shift, and go to state 103
-    OP_AND       shift, and go to state 104
-    OP_XOR       shift, and go to state 105
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_OR        shift, and go to state 102
+    OP_AND       shift, and go to state 103
+    OP_XOR       shift, and go to state 104
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
+    STRING       shift, and go to state 109
 
-    $default  reduce using rule 54 (expr_cad)
 
-
-State 69
+State 68
 
    68 expr: function_call .
 
     $default  reduce using rule 68 (expr)
 
 
-State 70
+State 69
 
    67 expr: const .
 
     $default  reduce using rule 67 (expr)
 
 
-State 71
+State 70
 
    79 const: array_constant .
 
     $default  reduce using rule 79 (const)
 
 
-State 72
+State 71
 
    58 expr: expr . OP_PLUSLESS expr
    59     | expr . OP_MUL expr
@@ -1119,16 +1101,16 @@ State 72
    70 sentence_return: RETURN expr . SEMICOLON
 
     SEMICOLON    shift, and go to state 110
-    OP_OR        shift, and go to state 103
-    OP_AND       shift, and go to state 104
-    OP_XOR       shift, and go to state 105
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_OR        shift, and go to state 102
+    OP_AND       shift, and go to state 103
+    OP_XOR       shift, and go to state 104
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
 
-State 73
+State 72
 
    39 sentence_assign: IDENTIFIER EQUAL . expr SEMICOLON
 
@@ -1141,17 +1123,16 @@ State 73
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 111
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 74
+State 73
 
    25 header_subprogram: type IDENTIFIER . LEFT_BRACKET parameters RIGHT_BRACKET
    26                  | type IDENTIFIER . LEFT_BRACKET RIGHT_BRACKET
@@ -1159,28 +1140,28 @@ State 74
     LEFT_BRACKET  shift, and go to state 112
 
 
-State 75
+State 74
 
     6 sub_prog: header_subprogram block .
 
     $default  reduce using rule 6 (sub_prog)
 
 
-State 76
+State 75
 
     2 block: start_block local_var_dec sub_progs sentences end_block .
 
     $default  reduce using rule 2 (block)
 
 
-State 77
+State 76
 
    29 sentences: sentences sentence .
 
     $default  reduce using rule 29 (sentences)
 
 
-State 78
+State 77
 
    21 array_or_id: IDENTIFIER LEFT_SQUARE_BRACKET expr . COMMA expr RIGHT_SQUARE_BRACKET
    22            | IDENTIFIER LEFT_SQUARE_BRACKET expr . RIGHT_SQUARE_BRACKET
@@ -1194,23 +1175,23 @@ State 78
 
     COMMA                 shift, and go to state 113
     RIGHT_SQUARE_BRACKET  shift, and go to state 114
-    OP_OR                 shift, and go to state 103
-    OP_AND                shift, and go to state 104
-    OP_XOR                shift, and go to state 105
-    OP_NEQ_EQ             shift, and go to state 106
-    OP_REL                shift, and go to state 107
-    OP_PLUSLESS           shift, and go to state 108
-    OP_MUL                shift, and go to state 109
+    OP_OR                 shift, and go to state 102
+    OP_AND                shift, and go to state 103
+    OP_XOR                shift, and go to state 104
+    OP_NEQ_EQ             shift, and go to state 105
+    OP_REL                shift, and go to state 106
+    OP_PLUSLESS           shift, and go to state 107
+    OP_MUL                shift, and go to state 108
 
 
-State 79
+State 78
 
    23 array_or_id: array_or_id COMMA IDENTIFIER .
 
     $default  reduce using rule 23 (array_or_id)
 
 
-State 80
+State 79
 
    40 sentence_if_then_else: IF LEFT_BRACKET expr . RIGHT_BRACKET sentence
    41                      | IF LEFT_BRACKET expr . RIGHT_BRACKET sentence ELSE sentence
@@ -1223,16 +1204,16 @@ State 80
    64     | expr . OP_XOR expr
 
     RIGHT_BRACKET  shift, and go to state 115
-    OP_OR          shift, and go to state 103
-    OP_AND         shift, and go to state 104
-    OP_XOR         shift, and go to state 105
-    OP_NEQ_EQ      shift, and go to state 106
-    OP_REL         shift, and go to state 107
-    OP_PLUSLESS    shift, and go to state 108
-    OP_MUL         shift, and go to state 109
+    OP_OR          shift, and go to state 102
+    OP_AND         shift, and go to state 103
+    OP_XOR         shift, and go to state 104
+    OP_NEQ_EQ      shift, and go to state 105
+    OP_REL         shift, and go to state 106
+    OP_PLUSLESS    shift, and go to state 107
+    OP_MUL         shift, and go to state 108
 
 
-State 81
+State 80
 
    42 sentence_while: WHILE LEFT_BRACKET expr . RIGHT_BRACKET sentence
    58 expr: expr . OP_PLUSLESS expr
@@ -1244,16 +1225,16 @@ State 81
    64     | expr . OP_XOR expr
 
     RIGHT_BRACKET  shift, and go to state 116
-    OP_OR          shift, and go to state 103
-    OP_AND         shift, and go to state 104
-    OP_XOR         shift, and go to state 105
-    OP_NEQ_EQ      shift, and go to state 106
-    OP_REL         shift, and go to state 107
-    OP_PLUSLESS    shift, and go to state 108
-    OP_MUL         shift, and go to state 109
+    OP_OR          shift, and go to state 102
+    OP_AND         shift, and go to state 103
+    OP_XOR         shift, and go to state 104
+    OP_NEQ_EQ      shift, and go to state 105
+    OP_REL         shift, and go to state 106
+    OP_PLUSLESS    shift, and go to state 107
+    OP_MUL         shift, and go to state 108
 
 
-State 82
+State 81
 
    43 sentence_switch: SELECT LEFT_BRACKET expr . RIGHT_BRACKET start_block switch_cases end_block
    58 expr: expr . OP_PLUSLESS expr
@@ -1265,16 +1246,16 @@ State 82
    64     | expr . OP_XOR expr
 
     RIGHT_BRACKET  shift, and go to state 117
-    OP_OR          shift, and go to state 103
-    OP_AND         shift, and go to state 104
-    OP_XOR         shift, and go to state 105
-    OP_NEQ_EQ      shift, and go to state 106
-    OP_REL         shift, and go to state 107
-    OP_PLUSLESS    shift, and go to state 108
-    OP_MUL         shift, and go to state 109
+    OP_OR          shift, and go to state 102
+    OP_AND         shift, and go to state 103
+    OP_XOR         shift, and go to state 104
+    OP_NEQ_EQ      shift, and go to state 105
+    OP_REL         shift, and go to state 106
+    OP_PLUSLESS    shift, and go to state 107
+    OP_MUL         shift, and go to state 108
 
 
-State 83
+State 82
 
    47 sentence_input: ENTER STRING COMMA . array_or_id
 
@@ -1283,7 +1264,7 @@ State 83
     array_or_id  go to state 118
 
 
-State 84
+State 83
 
    55 expr: LEFT_BRACKET expr . RIGHT_BRACKET
    58     | expr . OP_PLUSLESS expr
@@ -1295,124 +1276,124 @@ State 84
    64     | expr . OP_XOR expr
 
     RIGHT_BRACKET  shift, and go to state 119
-    OP_OR          shift, and go to state 103
-    OP_AND         shift, and go to state 104
-    OP_XOR         shift, and go to state 105
-    OP_NEQ_EQ      shift, and go to state 106
-    OP_REL         shift, and go to state 107
-    OP_PLUSLESS    shift, and go to state 108
-    OP_MUL         shift, and go to state 109
+    OP_OR          shift, and go to state 102
+    OP_AND         shift, and go to state 103
+    OP_XOR         shift, and go to state 104
+    OP_NEQ_EQ      shift, and go to state 105
+    OP_REL         shift, and go to state 106
+    OP_PLUSLESS    shift, and go to state 107
+    OP_MUL         shift, and go to state 108
+
+
+State 84
+
+   97 list_boolean_const: BOOL .
+
+    $default  reduce using rule 97 (list_boolean_const)
 
 
 State 85
 
-   98 list_boolean_const: BOOL .
+   93 list_int_const: INT .
 
-    $default  reduce using rule 98 (list_boolean_const)
+    $default  reduce using rule 93 (list_int_const)
 
 
 State 86
 
-   94 list_int_const: INT .
+   95 list_float_const: FLOAT .
 
-    $default  reduce using rule 94 (list_int_const)
+    $default  reduce using rule 95 (list_float_const)
 
 
 State 87
 
-   96 list_float_const: FLOAT .
+   99 list_char_const: CHAR .
 
-    $default  reduce using rule 96 (list_float_const)
+    $default  reduce using rule 99 (list_char_const)
 
 
 State 88
 
-  100 list_char_const: CHAR .
+  101 list_string_const: STRING .
 
-    $default  reduce using rule 100 (list_char_const)
+    $default  reduce using rule 101 (list_string_const)
 
 
 State 89
 
-  102 list_string_const: STRING .
+  103 list_array_const: array_constant .
 
-    $default  reduce using rule 102 (list_string_const)
+    $default  reduce using rule 103 (list_array_const)
 
 
 State 90
 
-  104 list_array_const: array_constant .
-
-    $default  reduce using rule 104 (list_array_const)
-
-
-State 91
-
-   81 array_constant: LEFT_SQUARE_BRACKET list_int_const . RIGHT_SQUARE_BRACKET
-   82               | LEFT_SQUARE_BRACKET list_int_const . SEMICOLON list_int_const RIGHT_SQUARE_BRACKET
-   93 list_int_const: list_int_const . COMMA INT
+   80 array_constant: LEFT_SQUARE_BRACKET list_int_const . RIGHT_SQUARE_BRACKET
+   81               | LEFT_SQUARE_BRACKET list_int_const . SEMICOLON list_int_const RIGHT_SQUARE_BRACKET
+   92 list_int_const: list_int_const . COMMA INT
 
     COMMA                 shift, and go to state 120
     SEMICOLON             shift, and go to state 121
     RIGHT_SQUARE_BRACKET  shift, and go to state 122
 
 
-State 92
+State 91
 
-   83 array_constant: LEFT_SQUARE_BRACKET list_float_const . RIGHT_SQUARE_BRACKET
-   84               | LEFT_SQUARE_BRACKET list_float_const . SEMICOLON list_float_const RIGHT_SQUARE_BRACKET
-   95 list_float_const: list_float_const . COMMA FLOAT
+   82 array_constant: LEFT_SQUARE_BRACKET list_float_const . RIGHT_SQUARE_BRACKET
+   83               | LEFT_SQUARE_BRACKET list_float_const . SEMICOLON list_float_const RIGHT_SQUARE_BRACKET
+   94 list_float_const: list_float_const . COMMA FLOAT
 
     COMMA                 shift, and go to state 123
     SEMICOLON             shift, and go to state 124
     RIGHT_SQUARE_BRACKET  shift, and go to state 125
 
 
-State 93
+State 92
 
-   85 array_constant: LEFT_SQUARE_BRACKET list_boolean_const . RIGHT_SQUARE_BRACKET
-   86               | LEFT_SQUARE_BRACKET list_boolean_const . SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET
-   97 list_boolean_const: list_boolean_const . COMMA BOOL
+   84 array_constant: LEFT_SQUARE_BRACKET list_boolean_const . RIGHT_SQUARE_BRACKET
+   85               | LEFT_SQUARE_BRACKET list_boolean_const . SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET
+   96 list_boolean_const: list_boolean_const . COMMA BOOL
 
     COMMA                 shift, and go to state 126
     SEMICOLON             shift, and go to state 127
     RIGHT_SQUARE_BRACKET  shift, and go to state 128
 
 
-State 94
+State 93
 
-   87 array_constant: LEFT_SQUARE_BRACKET list_char_const . RIGHT_SQUARE_BRACKET
-   88               | LEFT_SQUARE_BRACKET list_char_const . SEMICOLON list_char_const RIGHT_SQUARE_BRACKET
-   99 list_char_const: list_char_const . COMMA CHAR
+   86 array_constant: LEFT_SQUARE_BRACKET list_char_const . RIGHT_SQUARE_BRACKET
+   87               | LEFT_SQUARE_BRACKET list_char_const . SEMICOLON list_char_const RIGHT_SQUARE_BRACKET
+   98 list_char_const: list_char_const . COMMA CHAR
 
     COMMA                 shift, and go to state 129
     SEMICOLON             shift, and go to state 130
     RIGHT_SQUARE_BRACKET  shift, and go to state 131
 
 
-State 95
+State 94
 
-   89 array_constant: LEFT_SQUARE_BRACKET list_string_const . RIGHT_SQUARE_BRACKET
-   90               | LEFT_SQUARE_BRACKET list_string_const . SEMICOLON list_string_const RIGHT_SQUARE_BRACKET
-  101 list_string_const: list_string_const . COMMA STRING
+   88 array_constant: LEFT_SQUARE_BRACKET list_string_const . RIGHT_SQUARE_BRACKET
+   89               | LEFT_SQUARE_BRACKET list_string_const . SEMICOLON list_string_const RIGHT_SQUARE_BRACKET
+  100 list_string_const: list_string_const . COMMA STRING
 
     COMMA                 shift, and go to state 132
     SEMICOLON             shift, and go to state 133
     RIGHT_SQUARE_BRACKET  shift, and go to state 134
 
 
-State 96
+State 95
 
-   91 array_constant: LEFT_SQUARE_BRACKET list_array_const . RIGHT_SQUARE_BRACKET
-   92               | LEFT_SQUARE_BRACKET list_array_const . SEMICOLON list_array_const RIGHT_SQUARE_BRACKET
-  103 list_array_const: list_array_const . COMMA array_constant
+   90 array_constant: LEFT_SQUARE_BRACKET list_array_const . RIGHT_SQUARE_BRACKET
+   91               | LEFT_SQUARE_BRACKET list_array_const . SEMICOLON list_array_const RIGHT_SQUARE_BRACKET
+  102 list_array_const: list_array_const . COMMA array_constant
 
     COMMA                 shift, and go to state 135
     SEMICOLON             shift, and go to state 136
     RIGHT_SQUARE_BRACKET  shift, and go to state 137
 
 
-State 97
+State 96
 
    56 expr: OP_PLUSLESS expr .
    58     | expr . OP_PLUSLESS expr
@@ -1426,7 +1407,7 @@ State 97
     $default  reduce using rule 56 (expr)
 
 
-State 98
+State 97
 
    57 expr: UNARY_OPERATOR expr .
    58     | expr . OP_PLUSLESS expr
@@ -1440,7 +1421,7 @@ State 98
     $default  reduce using rule 57 (expr)
 
 
-State 99
+State 98
 
    71 function_call: IDENTIFIER LEFT_BRACKET . list_expr RIGHT_BRACKET
    72              | IDENTIFIER LEFT_BRACKET . RIGHT_BRACKET
@@ -1455,18 +1436,17 @@ State 99
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 139
-    function_call   go to state 69
+    function_call   go to state 68
     list_expr       go to state 140
-    const           go to state 70
-    array_constant  go to state 71
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 100
+State 99
 
    52 array: IDENTIFIER LEFT_SQUARE_BRACKET . expr COMMA expr RIGHT_SQUARE_BRACKET
    53      | IDENTIFIER LEFT_SQUARE_BRACKET . expr RIGHT_SQUARE_BRACKET
@@ -1480,17 +1460,16 @@ State 100
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 141
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 101
+State 100
 
    50 list_expr_string: list_expr_string COMMA . expr_cad
 
@@ -1503,25 +1482,24 @@ State 101
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr_cad        go to state 142
-    expr            go to state 68
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    expr            go to state 67
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 102
+State 101
 
    49 sentence_output: EXIT list_expr_string SEMICOLON .
 
     $default  reduce using rule 49 (sentence_output)
 
 
-State 103
+State 102
 
    62 expr: expr OP_OR . expr
 
@@ -1534,17 +1512,16 @@ State 103
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 143
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 104
+State 103
 
    63 expr: expr OP_AND . expr
 
@@ -1557,17 +1534,16 @@ State 104
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 144
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 105
+State 104
 
    64 expr: expr OP_XOR . expr
 
@@ -1580,17 +1556,16 @@ State 105
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 145
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 106
+State 105
 
    61 expr: expr OP_NEQ_EQ . expr
 
@@ -1603,17 +1578,16 @@ State 106
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 146
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 107
+State 106
 
    60 expr: expr OP_REL . expr
 
@@ -1626,17 +1600,16 @@ State 107
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 147
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 108
+State 107
 
    58 expr: expr OP_PLUSLESS . expr
 
@@ -1649,17 +1622,16 @@ State 108
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 148
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
-State 109
+State 108
 
    59 expr: expr OP_MUL . expr
 
@@ -1672,14 +1644,20 @@ State 109
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 149
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
+
+
+State 109
+
+   54 expr_cad: expr STRING .
+
+    $default  reduce using rule 54 (expr_cad)
 
 
 State 110
@@ -1701,13 +1679,13 @@ State 111
    64     | expr . OP_XOR expr
 
     SEMICOLON    shift, and go to state 150
-    OP_OR        shift, and go to state 103
-    OP_AND       shift, and go to state 104
-    OP_XOR       shift, and go to state 105
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_OR        shift, and go to state 102
+    OP_AND       shift, and go to state 103
+    OP_XOR       shift, and go to state 104
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
 
 State 112
@@ -1737,14 +1715,13 @@ State 113
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 154
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 114
@@ -1833,122 +1810,122 @@ State 119
 
 State 120
 
-   93 list_int_const: list_int_const COMMA . INT
+   92 list_int_const: list_int_const COMMA . INT
 
     INT  shift, and go to state 158
 
 
 State 121
 
-   82 array_constant: LEFT_SQUARE_BRACKET list_int_const SEMICOLON . list_int_const RIGHT_SQUARE_BRACKET
+   81 array_constant: LEFT_SQUARE_BRACKET list_int_const SEMICOLON . list_int_const RIGHT_SQUARE_BRACKET
 
-    INT  shift, and go to state 86
+    INT  shift, and go to state 85
 
     list_int_const  go to state 159
 
 
 State 122
 
-   81 array_constant: LEFT_SQUARE_BRACKET list_int_const RIGHT_SQUARE_BRACKET .
+   80 array_constant: LEFT_SQUARE_BRACKET list_int_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 81 (array_constant)
+    $default  reduce using rule 80 (array_constant)
 
 
 State 123
 
-   95 list_float_const: list_float_const COMMA . FLOAT
+   94 list_float_const: list_float_const COMMA . FLOAT
 
     FLOAT  shift, and go to state 160
 
 
 State 124
 
-   84 array_constant: LEFT_SQUARE_BRACKET list_float_const SEMICOLON . list_float_const RIGHT_SQUARE_BRACKET
+   83 array_constant: LEFT_SQUARE_BRACKET list_float_const SEMICOLON . list_float_const RIGHT_SQUARE_BRACKET
 
-    FLOAT  shift, and go to state 87
+    FLOAT  shift, and go to state 86
 
     list_float_const  go to state 161
 
 
 State 125
 
-   83 array_constant: LEFT_SQUARE_BRACKET list_float_const RIGHT_SQUARE_BRACKET .
+   82 array_constant: LEFT_SQUARE_BRACKET list_float_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 83 (array_constant)
+    $default  reduce using rule 82 (array_constant)
 
 
 State 126
 
-   97 list_boolean_const: list_boolean_const COMMA . BOOL
+   96 list_boolean_const: list_boolean_const COMMA . BOOL
 
     BOOL  shift, and go to state 162
 
 
 State 127
 
-   86 array_constant: LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON . list_boolean_const RIGHT_SQUARE_BRACKET
+   85 array_constant: LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON . list_boolean_const RIGHT_SQUARE_BRACKET
 
-    BOOL  shift, and go to state 85
+    BOOL  shift, and go to state 84
 
     list_boolean_const  go to state 163
 
 
 State 128
 
-   85 array_constant: LEFT_SQUARE_BRACKET list_boolean_const RIGHT_SQUARE_BRACKET .
+   84 array_constant: LEFT_SQUARE_BRACKET list_boolean_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 85 (array_constant)
+    $default  reduce using rule 84 (array_constant)
 
 
 State 129
 
-   99 list_char_const: list_char_const COMMA . CHAR
+   98 list_char_const: list_char_const COMMA . CHAR
 
     CHAR  shift, and go to state 164
 
 
 State 130
 
-   88 array_constant: LEFT_SQUARE_BRACKET list_char_const SEMICOLON . list_char_const RIGHT_SQUARE_BRACKET
+   87 array_constant: LEFT_SQUARE_BRACKET list_char_const SEMICOLON . list_char_const RIGHT_SQUARE_BRACKET
 
-    CHAR  shift, and go to state 88
+    CHAR  shift, and go to state 87
 
     list_char_const  go to state 165
 
 
 State 131
 
-   87 array_constant: LEFT_SQUARE_BRACKET list_char_const RIGHT_SQUARE_BRACKET .
+   86 array_constant: LEFT_SQUARE_BRACKET list_char_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 87 (array_constant)
+    $default  reduce using rule 86 (array_constant)
 
 
 State 132
 
-  101 list_string_const: list_string_const COMMA . STRING
+  100 list_string_const: list_string_const COMMA . STRING
 
     STRING  shift, and go to state 166
 
 
 State 133
 
-   90 array_constant: LEFT_SQUARE_BRACKET list_string_const SEMICOLON . list_string_const RIGHT_SQUARE_BRACKET
+   89 array_constant: LEFT_SQUARE_BRACKET list_string_const SEMICOLON . list_string_const RIGHT_SQUARE_BRACKET
 
-    STRING  shift, and go to state 89
+    STRING  shift, and go to state 88
 
     list_string_const  go to state 167
 
 
 State 134
 
-   89 array_constant: LEFT_SQUARE_BRACKET list_string_const RIGHT_SQUARE_BRACKET .
+   88 array_constant: LEFT_SQUARE_BRACKET list_string_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 89 (array_constant)
+    $default  reduce using rule 88 (array_constant)
 
 
 State 135
 
-  103 list_array_const: list_array_const COMMA . array_constant
+  102 list_array_const: list_array_const COMMA . array_constant
 
     LEFT_SQUARE_BRACKET  shift, and go to state 57
 
@@ -1957,19 +1934,19 @@ State 135
 
 State 136
 
-   92 array_constant: LEFT_SQUARE_BRACKET list_array_const SEMICOLON . list_array_const RIGHT_SQUARE_BRACKET
+   91 array_constant: LEFT_SQUARE_BRACKET list_array_const SEMICOLON . list_array_const RIGHT_SQUARE_BRACKET
 
     LEFT_SQUARE_BRACKET  shift, and go to state 57
 
-    array_constant    go to state 90
+    array_constant    go to state 89
     list_array_const  go to state 169
 
 
 State 137
 
-   91 array_constant: LEFT_SQUARE_BRACKET list_array_const RIGHT_SQUARE_BRACKET .
+   90 array_constant: LEFT_SQUARE_BRACKET list_array_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 91 (array_constant)
+    $default  reduce using rule 90 (array_constant)
 
 
 State 138
@@ -1990,13 +1967,13 @@ State 139
    64     | expr . OP_XOR expr
    74 list_expr: expr .
 
-    OP_OR        shift, and go to state 103
-    OP_AND       shift, and go to state 104
-    OP_XOR       shift, and go to state 105
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_OR        shift, and go to state 102
+    OP_AND       shift, and go to state 103
+    OP_XOR       shift, and go to state 104
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
     $default  reduce using rule 74 (list_expr)
 
@@ -2024,13 +2001,13 @@ State 141
 
     COMMA                 shift, and go to state 172
     RIGHT_SQUARE_BRACKET  shift, and go to state 173
-    OP_OR                 shift, and go to state 103
-    OP_AND                shift, and go to state 104
-    OP_XOR                shift, and go to state 105
-    OP_NEQ_EQ             shift, and go to state 106
-    OP_REL                shift, and go to state 107
-    OP_PLUSLESS           shift, and go to state 108
-    OP_MUL                shift, and go to state 109
+    OP_OR                 shift, and go to state 102
+    OP_AND                shift, and go to state 103
+    OP_XOR                shift, and go to state 104
+    OP_NEQ_EQ             shift, and go to state 105
+    OP_REL                shift, and go to state 106
+    OP_PLUSLESS           shift, and go to state 107
+    OP_MUL                shift, and go to state 108
 
 
 State 142
@@ -2051,12 +2028,12 @@ State 143
    63     | expr . OP_AND expr
    64     | expr . OP_XOR expr
 
-    OP_AND       shift, and go to state 104
-    OP_XOR       shift, and go to state 105
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_AND       shift, and go to state 103
+    OP_XOR       shift, and go to state 104
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
     $default  reduce using rule 62 (expr)
 
@@ -2072,11 +2049,11 @@ State 144
    63     | expr OP_AND expr .
    64     | expr . OP_XOR expr
 
-    OP_XOR       shift, and go to state 105
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_XOR       shift, and go to state 104
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
     $default  reduce using rule 63 (expr)
 
@@ -2092,10 +2069,10 @@ State 145
    64     | expr . OP_XOR expr
    64     | expr OP_XOR expr .
 
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
     $default  reduce using rule 64 (expr)
 
@@ -2111,9 +2088,9 @@ State 146
    63     | expr . OP_AND expr
    64     | expr . OP_XOR expr
 
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
     $default  reduce using rule 61 (expr)
 
@@ -2129,8 +2106,8 @@ State 147
    63     | expr . OP_AND expr
    64     | expr . OP_XOR expr
 
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
     $default  reduce using rule 60 (expr)
 
@@ -2146,7 +2123,7 @@ State 148
    63     | expr . OP_AND expr
    64     | expr . OP_XOR expr
 
-    OP_MUL  shift, and go to state 109
+    OP_MUL  shift, and go to state 108
 
     $default  reduce using rule 58 (expr)
 
@@ -2207,13 +2184,13 @@ State 154
    64     | expr . OP_XOR expr
 
     RIGHT_SQUARE_BRACKET  shift, and go to state 177
-    OP_OR                 shift, and go to state 103
-    OP_AND                shift, and go to state 104
-    OP_XOR                shift, and go to state 105
-    OP_NEQ_EQ             shift, and go to state 106
-    OP_REL                shift, and go to state 107
-    OP_PLUSLESS           shift, and go to state 108
-    OP_MUL                shift, and go to state 109
+    OP_OR                 shift, and go to state 102
+    OP_AND                shift, and go to state 103
+    OP_XOR                shift, and go to state 104
+    OP_NEQ_EQ             shift, and go to state 105
+    OP_REL                shift, and go to state 106
+    OP_PLUSLESS           shift, and go to state 107
+    OP_MUL                shift, and go to state 108
 
 
 State 155
@@ -2245,15 +2222,15 @@ State 157
 
 State 158
 
-   93 list_int_const: list_int_const COMMA INT .
+   92 list_int_const: list_int_const COMMA INT .
 
-    $default  reduce using rule 93 (list_int_const)
+    $default  reduce using rule 92 (list_int_const)
 
 
 State 159
 
-   82 array_constant: LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const . RIGHT_SQUARE_BRACKET
-   93 list_int_const: list_int_const . COMMA INT
+   81 array_constant: LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const . RIGHT_SQUARE_BRACKET
+   92 list_int_const: list_int_const . COMMA INT
 
     COMMA                 shift, and go to state 120
     RIGHT_SQUARE_BRACKET  shift, and go to state 181
@@ -2261,15 +2238,15 @@ State 159
 
 State 160
 
-   95 list_float_const: list_float_const COMMA FLOAT .
+   94 list_float_const: list_float_const COMMA FLOAT .
 
-    $default  reduce using rule 95 (list_float_const)
+    $default  reduce using rule 94 (list_float_const)
 
 
 State 161
 
-   84 array_constant: LEFT_SQUARE_BRACKET list_float_const SEMICOLON list_float_const . RIGHT_SQUARE_BRACKET
-   95 list_float_const: list_float_const . COMMA FLOAT
+   83 array_constant: LEFT_SQUARE_BRACKET list_float_const SEMICOLON list_float_const . RIGHT_SQUARE_BRACKET
+   94 list_float_const: list_float_const . COMMA FLOAT
 
     COMMA                 shift, and go to state 123
     RIGHT_SQUARE_BRACKET  shift, and go to state 182
@@ -2277,15 +2254,15 @@ State 161
 
 State 162
 
-   97 list_boolean_const: list_boolean_const COMMA BOOL .
+   96 list_boolean_const: list_boolean_const COMMA BOOL .
 
-    $default  reduce using rule 97 (list_boolean_const)
+    $default  reduce using rule 96 (list_boolean_const)
 
 
 State 163
 
-   86 array_constant: LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON list_boolean_const . RIGHT_SQUARE_BRACKET
-   97 list_boolean_const: list_boolean_const . COMMA BOOL
+   85 array_constant: LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON list_boolean_const . RIGHT_SQUARE_BRACKET
+   96 list_boolean_const: list_boolean_const . COMMA BOOL
 
     COMMA                 shift, and go to state 126
     RIGHT_SQUARE_BRACKET  shift, and go to state 183
@@ -2293,15 +2270,15 @@ State 163
 
 State 164
 
-   99 list_char_const: list_char_const COMMA CHAR .
+   98 list_char_const: list_char_const COMMA CHAR .
 
-    $default  reduce using rule 99 (list_char_const)
+    $default  reduce using rule 98 (list_char_const)
 
 
 State 165
 
-   88 array_constant: LEFT_SQUARE_BRACKET list_char_const SEMICOLON list_char_const . RIGHT_SQUARE_BRACKET
-   99 list_char_const: list_char_const . COMMA CHAR
+   87 array_constant: LEFT_SQUARE_BRACKET list_char_const SEMICOLON list_char_const . RIGHT_SQUARE_BRACKET
+   98 list_char_const: list_char_const . COMMA CHAR
 
     COMMA                 shift, and go to state 129
     RIGHT_SQUARE_BRACKET  shift, and go to state 184
@@ -2309,15 +2286,15 @@ State 165
 
 State 166
 
-  101 list_string_const: list_string_const COMMA STRING .
+  100 list_string_const: list_string_const COMMA STRING .
 
-    $default  reduce using rule 101 (list_string_const)
+    $default  reduce using rule 100 (list_string_const)
 
 
 State 167
 
-   90 array_constant: LEFT_SQUARE_BRACKET list_string_const SEMICOLON list_string_const . RIGHT_SQUARE_BRACKET
-  101 list_string_const: list_string_const . COMMA STRING
+   89 array_constant: LEFT_SQUARE_BRACKET list_string_const SEMICOLON list_string_const . RIGHT_SQUARE_BRACKET
+  100 list_string_const: list_string_const . COMMA STRING
 
     COMMA                 shift, and go to state 132
     RIGHT_SQUARE_BRACKET  shift, and go to state 185
@@ -2325,15 +2302,15 @@ State 167
 
 State 168
 
-  103 list_array_const: list_array_const COMMA array_constant .
+  102 list_array_const: list_array_const COMMA array_constant .
 
-    $default  reduce using rule 103 (list_array_const)
+    $default  reduce using rule 102 (list_array_const)
 
 
 State 169
 
-   92 array_constant: LEFT_SQUARE_BRACKET list_array_const SEMICOLON list_array_const . RIGHT_SQUARE_BRACKET
-  103 list_array_const: list_array_const . COMMA array_constant
+   91 array_constant: LEFT_SQUARE_BRACKET list_array_const SEMICOLON list_array_const . RIGHT_SQUARE_BRACKET
+  102 list_array_const: list_array_const . COMMA array_constant
 
     COMMA                 shift, and go to state 135
     RIGHT_SQUARE_BRACKET  shift, and go to state 186
@@ -2352,14 +2329,13 @@ State 170
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 187
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 171
@@ -2382,14 +2358,13 @@ State 172
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 188
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 173
@@ -2470,14 +2445,13 @@ State 179
     INT                  shift, and go to state 60
     FLOAT                shift, and go to state 61
     CHAR                 shift, and go to state 62
-    STRING               shift, and go to state 63
-    IDENTIFIER           shift, and go to state 64
+    IDENTIFIER           shift, and go to state 63
 
-    array           go to state 66
+    array           go to state 65
     expr            go to state 191
-    function_call   go to state 69
-    const           go to state 70
-    array_constant  go to state 71
+    function_call   go to state 68
+    const           go to state 69
+    array_constant  go to state 70
 
 
 State 180
@@ -2491,44 +2465,44 @@ State 180
 
 State 181
 
-   82 array_constant: LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET .
+   81 array_constant: LEFT_SQUARE_BRACKET list_int_const SEMICOLON list_int_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 82 (array_constant)
+    $default  reduce using rule 81 (array_constant)
 
 
 State 182
 
-   84 array_constant: LEFT_SQUARE_BRACKET list_float_const SEMICOLON list_float_const RIGHT_SQUARE_BRACKET .
+   83 array_constant: LEFT_SQUARE_BRACKET list_float_const SEMICOLON list_float_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 84 (array_constant)
+    $default  reduce using rule 83 (array_constant)
 
 
 State 183
 
-   86 array_constant: LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET .
+   85 array_constant: LEFT_SQUARE_BRACKET list_boolean_const SEMICOLON list_boolean_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 86 (array_constant)
+    $default  reduce using rule 85 (array_constant)
 
 
 State 184
 
-   88 array_constant: LEFT_SQUARE_BRACKET list_char_const SEMICOLON list_char_const RIGHT_SQUARE_BRACKET .
+   87 array_constant: LEFT_SQUARE_BRACKET list_char_const SEMICOLON list_char_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 88 (array_constant)
+    $default  reduce using rule 87 (array_constant)
 
 
 State 185
 
-   90 array_constant: LEFT_SQUARE_BRACKET list_string_const SEMICOLON list_string_const RIGHT_SQUARE_BRACKET .
+   89 array_constant: LEFT_SQUARE_BRACKET list_string_const SEMICOLON list_string_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 90 (array_constant)
+    $default  reduce using rule 89 (array_constant)
 
 
 State 186
 
-   92 array_constant: LEFT_SQUARE_BRACKET list_array_const SEMICOLON list_array_const RIGHT_SQUARE_BRACKET .
+   91 array_constant: LEFT_SQUARE_BRACKET list_array_const SEMICOLON list_array_const RIGHT_SQUARE_BRACKET .
 
-    $default  reduce using rule 92 (array_constant)
+    $default  reduce using rule 91 (array_constant)
 
 
 State 187
@@ -2542,13 +2516,13 @@ State 187
    64     | expr . OP_XOR expr
    73 list_expr: list_expr COMMA expr .
 
-    OP_OR        shift, and go to state 103
-    OP_AND       shift, and go to state 104
-    OP_XOR       shift, and go to state 105
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_OR        shift, and go to state 102
+    OP_AND       shift, and go to state 103
+    OP_XOR       shift, and go to state 104
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
 
     $default  reduce using rule 73 (list_expr)
 
@@ -2565,13 +2539,13 @@ State 188
    64     | expr . OP_XOR expr
 
     RIGHT_SQUARE_BRACKET  shift, and go to state 193
-    OP_OR                 shift, and go to state 103
-    OP_AND                shift, and go to state 104
-    OP_XOR                shift, and go to state 105
-    OP_NEQ_EQ             shift, and go to state 106
-    OP_REL                shift, and go to state 107
-    OP_PLUSLESS           shift, and go to state 108
-    OP_MUL                shift, and go to state 109
+    OP_OR                 shift, and go to state 102
+    OP_AND                shift, and go to state 103
+    OP_XOR                shift, and go to state 104
+    OP_NEQ_EQ             shift, and go to state 105
+    OP_REL                shift, and go to state 106
+    OP_PLUSLESS           shift, and go to state 107
+    OP_MUL                shift, and go to state 108
 
 
 State 189
@@ -2600,13 +2574,13 @@ State 191
    63     | expr . OP_AND expr
    64     | expr . OP_XOR expr
 
-    OP_OR        shift, and go to state 103
-    OP_AND       shift, and go to state 104
-    OP_XOR       shift, and go to state 105
-    OP_NEQ_EQ    shift, and go to state 106
-    OP_REL       shift, and go to state 107
-    OP_PLUSLESS  shift, and go to state 108
-    OP_MUL       shift, and go to state 109
+    OP_OR        shift, and go to state 102
+    OP_AND       shift, and go to state 103
+    OP_XOR       shift, and go to state 104
+    OP_NEQ_EQ    shift, and go to state 105
+    OP_REL       shift, and go to state 106
+    OP_PLUSLESS  shift, and go to state 107
+    OP_MUL       shift, and go to state 108
     COLON        shift, and go to state 195
 
 
@@ -2722,7 +2696,7 @@ State 200
 
     block                  go to state 31
     start_block            go to state 8
-    sentence               go to state 77
+    sentence               go to state 76
     sentence_assign        go to state 38
     sentence_if_then_else  go to state 39
     sentence_while         go to state 40
