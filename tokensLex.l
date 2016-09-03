@@ -4,7 +4,6 @@
 //#include "tokens.h"
 #define MAXLONBUFFER 200
 char buffer[MAXLONBUFFER];
-int lineaActual = 1;
 %}
 
 const_integer  [0-9]+
@@ -69,8 +68,8 @@ other          .
 {string}        {printf("CADENA \n");               return STRING;}
 {identifier}	{printf("IDENTIFICADOR \n");        return IDENTIFIER;}
 [ \t]+
-\n	        ++lineaActual ;
-{other}		printf ("\n\n(Linea %d) ERROR LÉXICO: TOKEN %s\n\n", lineaActual, yytext);
+\n	        ++linea_actual ;
+{other}		printf ("\n\n(Linea %d) ERROR LÉXICO: TOKEN %s\n\n", linea_actual, yytext);
 
 %%
 

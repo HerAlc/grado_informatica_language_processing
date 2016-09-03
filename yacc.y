@@ -122,13 +122,11 @@ local_var:
 
 var_body:
   type array_or_id SEMICOLON
-| type array_or_id error
 | error
 ;
 
 type:
   primitive_type
-| error
 ;
 
 primitive_type:
@@ -140,6 +138,7 @@ array_or_id:
 | IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
 | array_or_id COMMA IDENTIFIER
 | IDENTIFIER
+| error
 ;
 
 header_subprogram:
