@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "tabla_simbolos.h"
 
 void yyerror( const char * msg ) ;
 
-int linea_actual = 1 ;
 %}
 
 %error-verbose
@@ -84,8 +84,8 @@ Principal:
 ;
 
 block:
-  start_block local_var_dec sub_progs sentences end_block
-| start_block local_var_dec sub_progs end_block
+  start_block {TS_InsertaMARCA();} local_var_dec sub_progs sentences end_block {TS_VaciarENTRADAS();}
+| start_block {TS_InsertaMARCA();} local_var_dec sub_progs end_block {TS_VaciarENTRADAS();}
 ;
 
 sub_progs:
@@ -94,7 +94,7 @@ sub_progs:
 ;
 
 sub_prog:
-  header_subprogram block
+  header_subprogram {subProg = 1;} block {subProg = 0;}
 ;
 
 local_var_dec:
@@ -121,7 +121,12 @@ local_var:
 ;
 
 var_body:
-  type array_or_id SEMICOLON
+  type {tipoTmp = $1.tipo;} array_or_id semicolon
+| error
+;
+
+semicolon:
+  SEMICOLON
 | error
 ;
 
@@ -135,16 +140,16 @@ primitive_type:
 ;
 
 array_or_id:
-  IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET
-| IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET
-| array_or_id COMMA IDENTIFIER 
-| IDENTIFIER 
+  IDENTIFIER LEFT_SQUARE_BRACKET expr COMMA expr RIGHT_SQUARE_BRACKET {tipoTmp.ListaTS_InsertaIDENT($1);} 
+| IDENTIFIER LEFT_SQUARE_BRACKET expr RIGHT_SQUARE_BRACKET {TS_InsertaIDENT($1);}
+| array_or_id COMMA IDENTIFIER {TS_InsertaIDENT($3);}
+| IDENTIFIER {TS_InsertaIDENT($1);}
 | error
 ;
 
 header_subprogram:
-  type IDENTIFIER LEFT_BRACKET parameters RIGHT_BRACKET
-| type IDENTIFIER LEFT_BRACKET RIGHT_BRACKET
+  type IDENTIFIER {tipoTmp = $1.tipo; TS_InsertaSUBPROG($2);} LEFT_BRACKET parameters RIGHT_BRACKET
+| type IDENTIFIER {tipoTmp = $1.tipo; TS_InsertaSUBPROG($2);} LEFT_BRACKET RIGHT_BRACKET
 ;
 
 parameters:
