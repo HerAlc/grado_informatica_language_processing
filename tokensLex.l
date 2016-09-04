@@ -1,7 +1,7 @@
 %{
 #include <stdlib.h>
 #include <string.h>
-//#include "tokens.h"
+#include "y.tab.h"
 #define MAXLONBUFFER 200
 char buffer[MAXLONBUFFER];
 %}
@@ -18,55 +18,55 @@ other          .
 
 %%
 
-"Principal"     {printf("PRINCIPAL \n");            return INICIO_PROGRAMA;}
-"iniVar"        {printf("INIVAR \n");               return VARINI;}
-"finVar"        {printf("FINVAR \n");               return VARFIN;}
-"{"             {printf("LLAVEINI \n");             return LEFT_CURLY;}
-"}"             {printf("LLAVEFIN \n");             return RIGHT_CURLY;}
-"entero"        {printf("TYPE (0) \n");             return TYPE;}
-"real"          {printf("TYPE (1) \n");             return TYPE;}
-"caracter"      {printf("TYPE (2) \n");             return TYPE;}
-"booleano"      {printf("TYPE (3) \n");             return TYPE;}
-","             {printf("COMA \n");                 return COMMA;}
-":"             {printf("COLON \n");                return COLON;}
-"("             {printf("PARENTINI \n");            return LEFT_BRACKET;}
-")"             {printf("PARENTFIN \n");            return RIGHT_BRACKET;}
-"="             {printf("IGUAL \n");                return EQUAL;}
-";"             {printf("PUNTOCOMA \n");            return SEMICOLON;}
-"selecciona"    {printf("SELECCIONA \n");           return SELECT;}
-"caso"          {printf("CASO \n");                 return CASE;}
-"romper"        {printf("ROMPER \n");               return BREAK;}
-"si"            {printf("SI \n");                   return IF;}
-"sino"          {printf("SINO \n");                 return ELSE;}
-"mientras"      {printf("MIENTRAS \n");             return WHILE;}
-"entrada"       {printf("ENTRADA \n");              return ENTER;}
-"salida"        {printf("SALIDA \n");               return EXIT;}
-"devolver"      {printf("DEVOLVER \n");             return RETURN;}
-"+"             {printf("MASMENOS (0) \n");         return OP_PLUSLESS;}
-"-"             {printf("MASMENOS (1) \n");         return OP_PLUSLESS;}
-"++"            {printf("ANIADIR \n");              return UNARY_OPERATOR;}
-"Verdadero"     {printf("VALORBOOL (0) \n");        return BOOL;}
-"Falso"         {printf("VALORBOOL (1) \n");        return BOOL;}
-"["             {printf("CORCHINI \n");             return LEFT_SQUARE_BRACKET;}
-"]"             {printf("CORCHFIN \n");             return RIGHT_SQUARE_BRACKET;}
-"%"             {printf("OPERBORRAR (1) \n");       return OP_MUL;}
-"xor"           {printf("BINARY_OPERATOR (1) \n");  return OP_XOR;}
-"y"             {printf("BINARY_OPERATOR (2) \n");  return OP_AND;}
-"o"             {printf("BINARY_OPERATOR (3) \n");  return OP_OR;}
-"!="            {printf("BINARY_OPERATOR (4) \n");  return OP_NEQ_EQ;}
-"=="            {printf("BINARY_OPERATOR (5) \n");  return OP_NEQ_EQ;}
-"<="            {printf("BINARY_OPERATOR (6) \n");  return OP_REL;}
-">="            {printf("BINARY_OPERATOR (7) \n");  return OP_REL;}
-"<"             {printf("BINARY_OPERATOR (8) \n");  return OP_REL;}
-">"             {printf("BINARY_OPERATOR (9) \n");  return OP_REL;}
-"*"             {printf("BINARY_OPERATOR (10) \n"); return OP_MUL;}
-"/"             {printf("BINARY_OPERATOR (11) \n"); return OP_MUL;}
-"!"             {printf("OPERADORUNA \n");          return UNARY_OPERATOR;}
-{const_integer} {printf("ENTERO \n");               return INT;}
-{const_float}   {printf("REAL \n");                 return FLOAT;}
-{const_char}    {printf("CARACTER \n");             return CHAR;}
-{string}        {printf("CADENA \n");               return STRING;}
-{identifier}	{printf("IDENTIFICADOR \n");        return IDENTIFIER;}
+"Principal"     {return INICIO_PROGRAMA;}
+"iniVar"        {return VARINI;}
+"finVar"        {return VARFIN;}
+"{"             {return LEFT_CURLY;}
+"}"             {return RIGHT_CURLY;}
+"entero"        {yylval.lexema = strdup (yytext); yylval.atrib = 0; yylval.tipo = entero;   return TYPE;}
+"real"          {yylval.lexema = strdup (yytext); yylval.atrib = 1; yylval.tipo = real;     return TYPE;}
+"caracter"      {yylval.lexema = strdup (yytext); yylval.atrib = 2; yylval.tipo = caracter; return TYPE;}
+"booleano"      {yylval.lexema = strdup (yytext); yylval.atrib = 3; yylval.tipo = booleano; return TYPE;}
+","             {return COMMA;}
+":"             {return COLON;}
+"("             {return LEFT_BRACKET;}
+")"             {return RIGHT_BRACKET;}
+"="             {return EQUAL;}
+";"             {return SEMICOLON;}
+"selecciona"    {return SELECT;}
+"caso"          {return CASE;}
+"romper"        {return BREAK;}
+"si"            {return IF;}
+"sino"          {return ELSE;}
+"mientras"      {return WHILE;}
+"entrada"       {return ENTER;}
+"salida"        {return EXIT;}
+"devolver"      {return RETURN;}
+"+"             {return OP_PLUSLESS;}
+"-"             {return OP_PLUSLESS;}
+"++"            {return UNARY_OPERATOR;}
+"Verdadero"     {return BOOL;}
+"Falso"         {return BOOL;}
+"["             {return LEFT_SQUARE_BRACKET;}
+"]"             {return RIGHT_SQUARE_BRACKET;}
+"%"             {return OP_MUL;}
+"xor"           {return OP_XOR;}
+"y"             {return OP_AND;}
+"o"             {return OP_OR;}
+"!="            {return OP_NEQ_EQ;}
+"=="            {return OP_NEQ_EQ;}
+"<="            {return OP_REL;}
+">="            {return OP_REL;}
+"<"             {return OP_REL;}
+">"             {return OP_REL;}
+"*"             {return OP_MUL;}
+"/"             {return OP_MUL;}
+"!"             {return UNARY_OPERATOR;}
+{const_integer} {return INT;}
+{const_float}   {return FLOAT;}
+{const_char}    {return CHAR;}
+{string}        {return STRING;}
+{identifier}	{return IDENTIFIER;}
 [ \t]+
 \n	        ++linea_actual ;
 {other}		printf ("\n\n(Linea %d) ERROR LÉXICO: TOKEN %s\n\n", linea_actual, yytext);
